@@ -1,0 +1,21 @@
+.button {
+  display: flex;
+  align-items: center;
+
+  padding: 10px 20px;
+  background-color: #009E7F;
+
+  border: none;
+  border-radius: 6px;
+
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: white;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
