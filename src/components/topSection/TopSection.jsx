@@ -1,6 +1,13 @@
 import React from "react";
-import "./TopSection.scss";
+import { Header } from "./Header";
+import "./TopSection.css";
+import { Title } from "./Title";
 
 export const TopSection = () => {
-  return <div className={"container"}>Hello world</div>;
+  return (
+    <div className={"top-section"}>
+      <Header />
+      <Title />
+    </div>
+  );
 };
