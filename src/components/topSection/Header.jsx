@@ -17,7 +17,9 @@ export const Header = () => {
         <Search />
       </div>
       <div>
-        <Button name="Join" onClick={() => dispatch(open())} />
+        <Button className="button-join" onClick={() => dispatch(open())}>
+          Join
+        </Button>
         {isOpen ? <SignUp /> : null}
       </div>
     </div>

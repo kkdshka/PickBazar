@@ -1,9 +1,7 @@
 .button {
   display: flex;
   align-items: center;
-
-  padding: 10px 20px;
-  background-color: #009E7F;
+  justify-content: center;
 
   border: none;
   border-radius: 6px;
@@ -15,7 +13,5 @@
   line-height: 17px;
   color: white;
 
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 }
