@@ -1,0 +1,27 @@
+%flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.sign-up {
+  position: relative;
+  width: 458px;
+  height: 712px;
+  background: white;
+  border-radius: 6px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 60px 40px;
+}
+
+.close-icon {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
