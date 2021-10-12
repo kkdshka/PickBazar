@@ -5,7 +5,8 @@
   margin-left: 30px;
   justify-content: space-between;
   align-items: center;
-  padding: 1em;
+  border-radius: 6px;
+  background-color: #F3F3F3;
 }
 
 .search-input {
@@ -16,6 +17,7 @@
   line-height: 18px;
   width: 100%;
   border: none;
+  background-color: #F3F3F3;
 
   &:focus {
     outline: none;
