@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal } from "../common/Modal";
-import { useDispatch, useSelector } from "react-redux";
-import { close, setFormValues } from "./signUpSlice";
+import { useDispatch } from "react-redux";
+import { close, signUpUser } from "./signUpSlice";
 import { IoClose } from "react-icons/io5";
 import "./SignUp.scss";
 import { Button } from "../common/Button";
@@ -12,7 +12,12 @@ import * as Yup from "yup";
 
 export const SignUp = () => {
   const dispatch = useDispatch();
-  const initialValues = useSelector((state) => state.signUp.formInitialValues);
+  const initialValues = {
+    username: "",
+    email: "",
+    password: "",
+    passwordConfirmation: "",
+  };
 
   const handleContinueWithFacebook = () => {};
 
@@ -21,7 +26,7 @@ export const SignUp = () => {
   const handleLoginClick = () => {};
 
   const handleClose = () => {
-    formik.resetForm(initialValues);
+    formik.resetForm();
     dispatch(close());
   };
 
@@ -41,8 +46,13 @@ export const SignUp = () => {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      dispatch(setFormValues(values));
-      alert(JSON.stringify(values, null, 2));
+      dispatch(
+        signUpUser({
+          username: values.username,
+          email: values.email,
+          password: values.password,
+        })
+      );
     },
   });
 

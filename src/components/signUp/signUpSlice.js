@@ -1,17 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { axiosInstance } from "../helpers/axios";
+
+export const signUpUser = createAsyncThunk(
+  "signUp/signUpUser",
+  async (user) => {
+    const response = await axiosInstance.post("auth/local/register", user);
+    return response.data;
+  }
+);
 
 const initialState = {
   isOpen: false,
-  formInitialValues: {
-    username: "",
-    email: "",
-    password: "",
-    passwordConfirmation: "",
-  },
+  user: null,
 };
 
 export const signUpSlice = createSlice({
-  name: "counter",
+  name: "signUp",
   initialState,
   reducers: {
     open: (state) => {
@@ -20,12 +24,14 @@ export const signUpSlice = createSlice({
     close: (state) => {
       state.isOpen = false;
     },
-    setFormValues: (state, action) => {
-      state.formInitialValues = action.payload;
-    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(signUpUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+    });
   },
 });
 
-export const { open, close, setFormValues } = signUpSlice.actions;
+export const { open, close } = signUpSlice.actions;
 
 export default signUpSlice.reducer;
