@@ -1,24 +1,17 @@
 import React from "react";
 import { Modal } from "../common/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { close, setFormValue } from "./signUpSlice";
+import { close, setFormValues } from "./signUpSlice";
 import { IoClose } from "react-icons/io5";
 import "./SignUp.scss";
 import { Button } from "../common/Button";
 import { Divider } from "../common/Divider";
 import { AiFillFacebook, AiOutlineGoogle } from "react-icons/ai";
+import { useFormik } from "formik";
 
 export const SignUp = () => {
   const dispatch = useDispatch();
-  const { username, email, password, passwordConfirmation } = useSelector(
-    (state) => state.signUp.formInitialValues
-  );
-
-  const handleChange = (name) => (e) => {
-    dispatch(setFormValue({ name: name, value: e.currentTarget.value }));
-  };
-
-  const handleContinueClick = () => {};
+  const initialValues = useSelector((state) => state.signUp.formInitialValues);
 
   const handleContinueWithFacebook = () => {};
 
@@ -26,40 +19,52 @@ export const SignUp = () => {
 
   const handleLoginClick = () => {};
 
+  const formik = useFormik({
+    initialValues: initialValues,
+    onSubmit: (values) => {
+      dispatch(setFormValues(values));
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
   return (
     <Modal>
       <div className="sign-up">
         <div className="sign-up_title">Sign up</div>
         <div className="sign-up_subtitle">Welcome!</div>
-        <CustomInput
+        <input
+          id="username"
           type="text"
-          value={username}
-          placeholder="Your username"
-          onChange={handleChange("username")}
+          className="sign-up_input"
+          {...formik.getFieldProps("username")}
         />
-        <CustomInput
+        <input
+          id="email"
           type="text"
-          value={email}
-          placeholder="Your email"
-          onChange={handleChange("email")}
+          className="sign-up_input"
+          {...formik.getFieldProps("email")}
         />
-        <CustomInput
+        <input
+          id="password"
           type="password"
-          value={password}
-          placeholder="Your password"
-          onChange={handleChange("password")}
+          className="sign-up_input"
+          {...formik.getFieldProps("password")}
         />
-        <CustomInput
+        <input
+          id="passwordConfirmation"
           type="password"
-          value={passwordConfirmation}
-          placeholder="Confirm password"
-          onChange={handleChange("passwordConfirmation")}
+          className="sign-up_input"
+          {...formik.getFieldProps("passwordConfirmation")}
         />
         <div className="sign-up_agreement">
           By signing up, you agree to Pickbazar's{" "}
           <span className="link">Terms & Condtion</span>
         </div>
-        <Button className="button-continue" onClick={handleContinueClick}>
+        <Button
+          type="button"
+          className="button-continue"
+          onClick={formik.handleSubmit}
+        >
           Continue
         </Button>
         <div className="sign-up_divider">
@@ -87,17 +92,5 @@ export const SignUp = () => {
         </IoClose>
       </div>
     </Modal>
-  );
-};
-
-const CustomInput = ({ type, value, placeholder, onChange }) => {
-  return (
-    <input
-      type={type}
-      className="sign-up_input"
-      value={value}
-      placeholder={placeholder}
-      onChange={onChange}
-    />
   );
 };

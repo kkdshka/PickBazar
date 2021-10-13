@@ -20,13 +20,12 @@ export const signUpSlice = createSlice({
     close: (state) => {
       state.isOpen = false;
     },
-    setFormValue: (state, action) => {
-      const { name, value } = action.payload;
-      state.formInitialValues[name] = value;
+    setFormValues: (state, action) => {
+      state.formInitialValues = action.payload;
     },
   },
 });
 
-export const { open, close, setFormValue } = signUpSlice.actions;
+export const { open, close, setFormValues } = signUpSlice.actions;
 
 export default signUpSlice.reducer;
