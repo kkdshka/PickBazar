@@ -6,7 +6,6 @@
 .sign-up {
   position: relative;
   width: 338px;
-  height: 632px;
   background: white;
   border-radius: 6px;
 
@@ -46,9 +45,19 @@
   width: 302px;
   border: 1px solid #F1F1F1;
   border-radius: 6px;
-  align-self: stretch;
   padding: 15px 18px;
+}
+
+.sign-up_input-container {
+  width: 338px;
+  //align-self: stretch;
   margin-bottom: 10px;
+}
+
+.sign-up_input-error {
+  font-size: 13px;
+  color: #FF282F;
+  text-align: center;
 }
 
 .sign-up_agreement {

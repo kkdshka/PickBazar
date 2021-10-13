@@ -14,4 +14,9 @@
   color: white;
 
   cursor: pointer;
+
+  &:disabled {
+    background-color: gray;
+    cursor: initial;
+  }
 }

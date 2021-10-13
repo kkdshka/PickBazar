@@ -8,6 +8,7 @@ import { Button } from "../common/Button";
 import { Divider } from "../common/Divider";
 import { AiFillFacebook, AiOutlineGoogle } from "react-icons/ai";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
 export const SignUp = () => {
   const dispatch = useDispatch();
@@ -19,8 +20,26 @@ export const SignUp = () => {
 
   const handleLoginClick = () => {};
 
+  const handleClose = () => {
+    formik.resetForm(initialValues);
+    dispatch(close());
+  };
+
+  const validationSchema = Yup.object({
+    username: Yup.string().required("Username is required"),
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    password: Yup.string().required("Password is required"),
+    passwordConfirmation: Yup.string().oneOf(
+      [Yup.ref("password"), null],
+      "Passwords must match"
+    ),
+  });
+
   const formik = useFormik({
     initialValues: initialValues,
+    validationSchema: validationSchema,
     onSubmit: (values) => {
       dispatch(setFormValues(values));
       alert(JSON.stringify(values, null, 2));
@@ -30,31 +49,32 @@ export const SignUp = () => {
   return (
     <Modal>
       <div className="sign-up">
+        <IoClose className="close-icon" onClick={handleClose}>
+          Close
+        </IoClose>
         <div className="sign-up_title">Sign up</div>
         <div className="sign-up_subtitle">Welcome!</div>
-        <input
+        <CustomSignUpInput
           id="username"
-          type="text"
-          className="sign-up_input"
-          {...formik.getFieldProps("username")}
+          formik={formik}
+          placeholder="Your Username"
         />
-        <input
+        <CustomSignUpInput
           id="email"
-          type="text"
-          className="sign-up_input"
-          {...formik.getFieldProps("email")}
+          formik={formik}
+          placeholder="Your Email"
         />
-        <input
+        <CustomSignUpInput
           id="password"
+          formik={formik}
           type="password"
-          className="sign-up_input"
-          {...formik.getFieldProps("password")}
+          placeholder="Your Password"
         />
-        <input
+        <CustomSignUpInput
           id="passwordConfirmation"
+          formik={formik}
           type="password"
-          className="sign-up_input"
-          {...formik.getFieldProps("passwordConfirmation")}
+          placeholder="Confirm Password"
         />
         <div className="sign-up_agreement">
           By signing up, you agree to Pickbazar's{" "}
@@ -63,6 +83,7 @@ export const SignUp = () => {
         <Button
           type="button"
           className="button-continue"
+          disabled={!formik.dirty || !formik.isValid}
           onClick={formik.handleSubmit}
         >
           Continue
@@ -87,10 +108,24 @@ export const SignUp = () => {
             Login
           </span>
         </div>
-        <IoClose className="close-icon" onClick={() => dispatch(close())}>
-          Close
-        </IoClose>
       </div>
     </Modal>
+  );
+};
+
+const CustomSignUpInput = ({ id, formik, type = "text", ...props }) => {
+  return (
+    <div className="sign-up_input-container">
+      <input
+        id={id}
+        type={type}
+        className="sign-up_input"
+        {...formik.getFieldProps(id)}
+        {...props}
+      />
+      {formik.touched[id] && formik.errors[id] ? (
+        <div className="sign-up_input-error">{formik.errors[id]}</div>
+      ) : null}
+    </div>
   );
 };
