@@ -24,6 +24,9 @@ export const signUpSlice = createSlice({
     close: (state) => {
       state.isOpen = false;
     },
+    logOut: (state) => {
+      state.user = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(signUpUser.fulfilled, (state, action) => {
@@ -32,6 +35,6 @@ export const signUpSlice = createSlice({
   },
 });
 
-export const { open, close } = signUpSlice.actions;
+export const { open, close, logOut } = signUpSlice.actions;
 
 export default signUpSlice.reducer;
