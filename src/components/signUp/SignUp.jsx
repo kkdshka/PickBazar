@@ -52,7 +52,11 @@ export const SignUp = () => {
           email: values.email,
           password: values.password,
         })
-      );
+      ).then((result) => {
+        if (result.meta.requestStatus === "fulfilled") {
+          dispatch(close());
+        }
+      });
     },
   });
 
