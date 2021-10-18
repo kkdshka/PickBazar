@@ -1,5 +1,5 @@
 import React from "react";
-import { open, logOut } from "../signUp/signUpSlice";
+import { open, logOut } from "../../store/signUpSlice";
 import { Button } from "../common/Button";
 import { useDispatch, useSelector } from "react-redux";
 import "./AuthButton.scss";

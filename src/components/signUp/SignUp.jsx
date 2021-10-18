@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal } from "../common/Modal";
 import { useDispatch } from "react-redux";
-import { close, signUpUser } from "./signUpSlice";
+import { close, signUpUser } from "../../store/signUpSlice";
 import { IoClose } from "react-icons/io5";
 import "./SignUp.scss";
 import { Button } from "../common/Button";
