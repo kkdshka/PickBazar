@@ -14,9 +14,7 @@ export const signUpUser = createAsyncThunk(
 export const signUpWithGoogle = createAsyncThunk(
   "signUp/signUpWithGoogle",
   async (token) => {
-    const response = await axiosInstance.get(
-      `auth/google/callback${token}`
-    );
+    const response = await axiosInstance.get(`auth/google/callback${token}`);
     toast.success("You successfully signed up");
     return response.data;
   }
@@ -24,7 +22,6 @@ export const signUpWithGoogle = createAsyncThunk(
 
 const initialState = {
   isOpen: false,
-  user: null,
 };
 
 export const signUpSlice = createSlice({
@@ -40,14 +37,6 @@ export const signUpSlice = createSlice({
     logOut: (state) => {
       state.user = null;
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(signUpUser.fulfilled, (state, action) => {
-      state.user = action.payload;
-    });
-    builder.addCase(signUpWithGoogle.fulfilled, (state, action) => {
-      state.user = action.payload;
-    });
   },
 });
 

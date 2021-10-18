@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./AuthButton.scss";
 
 export const AuthButton = () => {
-  const user = useSelector((state) => state.signUp.user);
+  const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
 
   if (user) {
