@@ -9,6 +9,7 @@ import { Divider } from "../common/Divider";
 import { AiFillFacebook, AiOutlineGoogle } from "react-icons/ai";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { FormikInput } from "../common/FormikInput";
 
 export const SignUp = () => {
   const dispatch = useDispatch();
@@ -70,23 +71,19 @@ export const SignUp = () => {
         </IoClose>
         <div className="sign-up_title">Sign up</div>
         <div className="sign-up_subtitle">Welcome!</div>
-        <CustomSignUpInput
+        <FormikInput
           id="username"
           formik={formik}
           placeholder="Your Username"
         />
-        <CustomSignUpInput
-          id="email"
-          formik={formik}
-          placeholder="Your Email"
-        />
-        <CustomSignUpInput
+        <FormikInput id="email" formik={formik} placeholder="Your Email" />
+        <FormikInput
           id="password"
           formik={formik}
           type="password"
           placeholder="Your Password"
         />
-        <CustomSignUpInput
+        <FormikInput
           id="passwordConfirmation"
           formik={formik}
           type="password"
@@ -126,22 +123,5 @@ export const SignUp = () => {
         </div>
       </div>
     </Modal>
-  );
-};
-
-const CustomSignUpInput = ({ id, formik, type = "text", ...props }) => {
-  return (
-    <div className="sign-up_input-container">
-      <input
-        id={id}
-        type={type}
-        className="sign-up_input"
-        {...formik.getFieldProps(id)}
-        {...props}
-      />
-      {formik.touched[id] && formik.errors[id] ? (
-        <div className="sign-up_input-error">{formik.errors[id]}</div>
-      ) : null}
-    </div>
   );
 };
