@@ -15,7 +15,7 @@ export const signUpWithGoogle = createAsyncThunk(
   "signUp/signUpWithGoogle",
   async (token) => {
     const response = await axiosInstance.get(
-      `${process.env.REACT_APP_BASE_URL}auth/google/callback${token}`
+      `auth/google/callback${token}`
     );
     toast.success("You successfully signed up");
     return response.data;
