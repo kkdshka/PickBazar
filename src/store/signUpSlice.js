@@ -1,10 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosInstance } from "../api/axios";
+import { toast } from "react-toastify";
 
 export const signUpUser = createAsyncThunk(
   "signUp/signUpUser",
   async (user) => {
     const response = await axiosInstance.post("auth/local/register", user);
+    toast.success("You successfully signed up");
     return response.data;
   }
 );
@@ -15,6 +17,7 @@ export const signUpWithGoogle = createAsyncThunk(
     const response = await axiosInstance.get(
       `${process.env.REACT_APP_BASE_URL}auth/google/callback${token}`
     );
+    toast.success("You successfully signed up");
     return response.data;
   }
 );

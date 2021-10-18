@@ -7,7 +7,6 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.response.use(
   function (response) {
-    toast.success("You successfully signed up");
     return response;
   },
   function (error) {
