@@ -11,6 +11,18 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FormikInput } from "../common/FormikInput";
 
+const validationSchema = Yup.object({
+  username: Yup.string().required("Username is required"),
+  email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+  password: Yup.string().required("Password is required"),
+  passwordConfirmation: Yup.string().oneOf(
+      [Yup.ref("password"), null],
+      "Passwords must match"
+  ),
+});
+
 export const SignUp = () => {
   const dispatch = useDispatch();
   const initialValues = {
@@ -32,18 +44,6 @@ export const SignUp = () => {
     formik.resetForm();
     dispatch(close());
   };
-
-  const validationSchema = Yup.object({
-    username: Yup.string().required("Username is required"),
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
-    password: Yup.string().required("Password is required"),
-    passwordConfirmation: Yup.string().oneOf(
-      [Yup.ref("password"), null],
-      "Passwords must match"
-    ),
-  });
 
   const formik = useFormik({
     initialValues: initialValues,
