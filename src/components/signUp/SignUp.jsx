@@ -21,7 +21,9 @@ export const SignUp = () => {
 
   const handleContinueWithFacebook = () => {};
 
-  const handleContinueWithGoogle = () => {};
+  const handleContinueWithGoogle = () => {
+    window.location = `${process.env.REACT_APP_BASE_URL}connect/google`;
+  };
 
   const handleLoginClick = () => {};
 

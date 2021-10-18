@@ -9,6 +9,16 @@ export const signUpUser = createAsyncThunk(
   }
 );
 
+export const signUpWithGoogle = createAsyncThunk(
+  "signUp/signUpWithGoogle",
+  async (token) => {
+    const response = await axiosInstance.get(
+      `${process.env.REACT_APP_BASE_URL}auth/google/callback${token}`
+    );
+    return response.data;
+  }
+);
+
 const initialState = {
   isOpen: false,
   user: null,
@@ -30,6 +40,9 @@ export const signUpSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(signUpUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+    });
+    builder.addCase(signUpWithGoogle.fulfilled, (state, action) => {
       state.user = action.payload;
     });
   },
