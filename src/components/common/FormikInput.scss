@@ -8,6 +8,18 @@
   border: 1px solid #F1F1F1;
   border-radius: 6px;
   padding: 15px 18px;
+
+  &:focus {
+    outline: none !important;
+    border-color: #009E7F;
+  }
+}
+
+.input-error {
+  &:focus {
+    outline: none !important;
+    border-color: #FF282F;
+  }
 }
 
 .formik-input_error-message {
