@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { SignUp } from "../signUp/SignUp";
 
 export const Header = () => {
-  const isOpen = useSelector((state) => state.signUp.isOpen);
+  const isSignUpOpen = useSelector((state) => state.signUp.isOpen);
 
   return (
     <div className="header">
@@ -16,7 +16,7 @@ export const Header = () => {
       </div>
       <div>
         <AuthButton />
-        {isOpen ? <SignUp /> : null}
+        {isSignUpOpen ? <SignUp /> : null}
       </div>
     </div>
   );

@@ -1,0 +1,21 @@
+.auth-form-container {
+  position: relative;
+  width: 338px;
+  background-color: white;
+  border-radius: 6px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 40px 60px;
+}
+
+.close-icon {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: rgba(0, 0, 0, 0.25);
+
+  cursor: pointer;
+}
