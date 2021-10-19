@@ -18,6 +18,11 @@ const initialState = {
   jwt: null,
 };
 
+const setUser = (state, action) => {
+  state.user = action.payload.user;
+  state.jwt = action.payload.jwt;
+};
+
 export const authSlice = createSlice({
   name: "user",
   initialState,
@@ -27,17 +32,12 @@ export const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(signUpUser.fulfilled, (state, action) => {
-      state.user = action.payload.user;
-      state.jwt = action.payload.jwt;
-    });
-    builder.addCase(signUpWithGoogle.fulfilled, (state, action) => {
-      state.user = action.payload.user;
-      state.jwt = action.payload.jwt;
-    });
+    builder.addCase(signUpUser.fulfilled, setUser);
+    builder.addCase(authWithGoogle.fulfilled, setUser);
+    builder.addCase(signInUser.fulfilled, setUser);
   },
 });
 
-export const { setUser, logOut } = authSlice.actions;
+export const { logOut } = authSlice.actions;
 
 export default authSlice.reducer;
