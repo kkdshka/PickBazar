@@ -14,12 +14,12 @@ import { FormikInput } from "../common/FormikInput";
 const validationSchema = Yup.object({
   username: Yup.string().required("Username is required"),
   email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
+    .email("Invalid email address")
+    .required("Email is required"),
   password: Yup.string().required("Password is required"),
   passwordConfirmation: Yup.string().oneOf(
-      [Yup.ref("password"), null],
-      "Passwords must match"
+    [Yup.ref("password"), null],
+    "Passwords must match"
   ),
 });
 
@@ -33,10 +33,6 @@ export const SignUp = () => {
   };
 
   const handleContinueWithFacebook = () => {};
-
-  const handleContinueWithGoogle = () => {
-    window.location = `${process.env.REACT_APP_BASE_URL}connect/google`;
-  };
 
   const handleLoginClick = () => {};
 
@@ -111,10 +107,13 @@ export const SignUp = () => {
           <AiFillFacebook className="sign-up_icon" />
           Continue with Facebook
         </Button>
-        <Button className="button-google" onClick={handleContinueWithGoogle}>
+        <a
+          className="button button-google"
+          href={`${process.env.REACT_APP_BASE_URL}connect/google`}
+        >
           <AiOutlineGoogle size={17} className="sign-up_icon" />
           Continue with Google
-        </Button>
+        </a>
         <div>
           Already have an account?{" "}
           <span className="sign-up_login" onClick={handleLoginClick}>
