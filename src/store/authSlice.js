@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import { signUpUser } from "./signUpSlice";
 import { signInUser } from "./signInSlice";
 import { axiosInstance } from "../api/axiosClient";
-import { toast } from "react-toastify";
 
 export const authWithGoogle = createAsyncThunk(
   "auth/authWithGoogle",

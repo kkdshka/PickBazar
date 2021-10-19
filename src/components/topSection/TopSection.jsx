@@ -1,9 +1,9 @@
 import React from "react";
-import { Header } from "./Header";
-import "./TopSection.scss";
-import { Title } from "./Title";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Header } from "./Header";
+import { Title } from "./Title";
+import "./TopSection.scss";
 
 export const TopSection = () => {
   return (

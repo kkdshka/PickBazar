@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { axiosInstance } from "../api/axiosClient";
 import { toast } from "react-toastify";
+import { axiosInstance } from "../api/axiosClient";
 
 export const signUpUser = createAsyncThunk(
   "signUp/signUpUser",
