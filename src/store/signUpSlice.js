@@ -34,12 +34,9 @@ export const signUpSlice = createSlice({
     close: (state) => {
       state.isOpen = false;
     },
-    logOut: (state) => {
-      state.user = null;
-    },
   },
 });
 
-export const { open, close, logOut } = signUpSlice.actions;
+export const { open, close } = signUpSlice.actions;
 
 export default signUpSlice.reducer;

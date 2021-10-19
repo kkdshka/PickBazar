@@ -1,11 +1,12 @@
 import React from "react";
-import { open, logOut } from "../../store/signUpSlice";
+import { open } from "../../store/signUpSlice";
+import { logOut } from "../../store/authSlice";
 import { Button } from "../common/Button";
 import { useDispatch, useSelector } from "react-redux";
 import "./AuthButton.scss";
 
 export const AuthButton = () => {
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 
   if (user) {
