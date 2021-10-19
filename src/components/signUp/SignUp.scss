@@ -3,20 +3,6 @@
   flex-direction: row;
 }
 
-.sign-up_title {
-  font-family: 'Poppins', sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 21px;
-  color: #009E7F;
-  margin-bottom: 10px;
-}
-
-.sign-up_subtitle {
-  color: #77798C;
-  margin-bottom: 30px;
-}
-
 .sign-up_agreement {
   margin-top: 20px;
   margin-bottom: 30px;
@@ -29,7 +15,8 @@
   cursor: pointer;
 }
 
-.sign-up_login {
+.sign-up_link {
+  font-weight: 700;
   color: #009E7F;
   text-decoration: underline;
   cursor: pointer;

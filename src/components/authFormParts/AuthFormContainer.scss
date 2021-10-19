@@ -11,7 +11,21 @@
   padding: 40px 60px;
 }
 
-.close-icon {
+.auth-form_title {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 21px;
+  color: #009E7F;
+  margin-bottom: 10px;
+}
+
+.auth-form_subtitle {
+  color: #77798C;
+  margin-bottom: 30px;
+}
+
+.auth-form_close-icon {
   position: absolute;
   right: 20px;
   top: 20px;
