@@ -11,15 +11,6 @@ export const signUpUser = createAsyncThunk(
   }
 );
 
-export const signUpWithGoogle = createAsyncThunk(
-  "signUp/signUpWithGoogle",
-  async (token) => {
-    const response = await axiosInstance.get(`auth/google/callback${token}`);
-    toast.success("You successfully signed up");
-    return response.data;
-  }
-);
-
 const initialState = {
   isOpen: false,
 };
