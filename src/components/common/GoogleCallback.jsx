@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { signUpWithGoogle } from "../../store/signUpSlice";
-import { useHistory } from "react-router-dom";
+import { authWithGoogle } from "../../store/authSlice";
 
 export function GoogleAuthCallback() {
   const dispatch = useDispatch();
@@ -15,7 +14,7 @@ export function GoogleAuthCallback() {
     }
 
     const { search } = location;
-    dispatch(signUpWithGoogle(search)).then((result) => {
+    dispatch(authWithGoogle(search)).then((result) => {
       if (result.meta.requestStatus === "fulfilled") {
         history.push("/");
       }

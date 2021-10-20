@@ -3,44 +3,6 @@
   flex-direction: row;
 }
 
-.sign-up {
-  position: relative;
-  width: 338px;
-  background: white;
-  border-radius: 6px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  padding: 40px 60px;
-}
-
-.close-icon {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  color: rgba(0, 0, 0, 0.25);
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.sign-up_title {
-  font-family: 'Poppins', sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 21px;
-  color: #009E7F;
-  margin-bottom: 10px;
-}
-
-.sign-up_subtitle {
-  color: #77798C;
-  margin-bottom: 30px;
-}
-
 .sign-up_agreement {
   margin-top: 20px;
   margin-bottom: 30px;
@@ -53,40 +15,8 @@
   cursor: pointer;
 }
 
-.button-continue {
-  background-color: #009E7F;
-  width: 100%;
-  height: 37px;
-}
-
-.sign-up_divider {
-  width: 100%;
-  font-size: 15px;
-  margin-top: 34px;
-  margin-bottom: 23px;
-}
-
-.button-facebook {
-  background-color: #4267B2;
-  height: 48px;
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-.button-google {
-  background-color: #4286F4;
-  height: 48px;
-  width: 100%;
-  margin-bottom: 20px;
-  text-decoration: none;
-}
-
-.sign-up_icon {
-  font-size: 17px;
-  margin-right: 5px;
-}
-
-.sign-up_login {
+.sign-up_link {
+  font-weight: 700;
   color: #009E7F;
   text-decoration: underline;
   cursor: pointer;

@@ -1,8 +1,8 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { open } from "../../store/signUpSlice";
 import { logOut } from "../../store/authSlice";
 import { Button } from "../common/Button";
-import { useDispatch, useSelector } from "react-redux";
 import "./AuthButton.scss";
 
 export const AuthButton = () => {

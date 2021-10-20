@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Home } from "./components/home/Home";
-import { GoogleAuthCallback } from "./components/signUp/GoogleCallback";
+import { GoogleAuthCallback } from "./components/common/GoogleCallback";
 
 export const App = () => {
   return (
