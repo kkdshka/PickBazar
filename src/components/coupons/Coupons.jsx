@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCoupons, fetchCoupons } from "../../store/couponsSlice";
-import "./Coupons.scss";
-import { Coupon } from "./Coupon";
+import {
+  getCouponsState,
+  fetchCoupons,
+  couponsStatus,
+} from "../../store/couponsSlice";
 import Carousel from "react-multi-carousel";
+import { Coupon } from "./Coupon";
 import "react-multi-carousel/lib/styles.css";
+import "./Coupons.scss";
 
 const responsive = {
   desktop: {
@@ -15,14 +19,13 @@ const responsive = {
 
 export const Coupons = () => {
   const dispatch = useDispatch();
-  const coupons = useSelector(getCoupons);
-  const couponsStatus = useSelector((state) => state.coupons.status);
+  const [coupons, status] = useSelector(getCouponsState);
 
   useEffect(() => {
-    if (couponsStatus === "idle") {
+    if (status === couponsStatus.IDLE) {
       dispatch(fetchCoupons());
     }
-  }, [couponsStatus, dispatch]);
+  }, [status, dispatch]);
 
   return (
     <div className="coupons_container">

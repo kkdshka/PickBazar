@@ -9,9 +9,11 @@ export const fetchCoupons = createAsyncThunk(
   }
 );
 
+export const couponsStatus = { IDLE: "IDLE", SUCCEEDED: "SUCCEEDED" };
+
 const initialState = {
-  coupons: [],
-  status: "idle",
+  data: [],
+  status: couponsStatus.IDLE,
 };
 
 export const couponsSlice = createSlice({
@@ -20,12 +22,15 @@ export const couponsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchCoupons.fulfilled, (state, action) => {
-      state.status = "succeeded";
-      state.coupons = action.payload;
+      state.status = couponsStatus.SUCCEEDED;
+      state.data = action.payload;
     });
   },
 });
 
-export const getCoupons = (state) => state.coupons.coupons;
+export const getCouponsState = (state) => [
+  state.coupons.data,
+  state.coupons.status,
+];
 
 export default couponsSlice.reducer;
