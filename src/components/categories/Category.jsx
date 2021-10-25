@@ -15,19 +15,19 @@ import {
 } from "react-icons/gi";
 
 const categoriesIcons = {
-  "Fruits & Vegetables": <GiFruitBowl />,
-  "Meat & Fish": <GiMeat />,
-  Snacks: <GiChipsBag />,
-  "Pet Care": <GiPaw />,
-  "Home & Cleaning": <GiFamilyHouse />,
-  Dairy: <GiMilkCarton />,
-  Cooking: <GiCookingPot />,
-  Breakfast: <GiCoffeeCup />,
-  Beverage: <GiMartini />,
-  "Beauty & Health": <GiDelicatePerfume />,
+  1: <GiFruitBowl />,
+  4: <GiMeat />,
+  7: <GiChipsBag />,
+  16: <GiPaw />,
+  21: <GiFamilyHouse />,
+  28: <GiMilkCarton />,
+  35: <GiCookingPot />,
+  40: <GiCoffeeCup />,
+  47: <GiMartini />,
+  55: <GiDelicatePerfume />,
 };
 
-export const Category = ({ category: { title, childCategories } }) => {
+export const Category = ({ category: { id, title, childCategories } }) => {
   const [active, setActive] = useState(false);
 
   return (
@@ -36,7 +36,7 @@ export const Category = ({ category: { title, childCategories } }) => {
         className={classNames("category_title", { active: active })}
         onClick={() => setActive(!active)}
       >
-        {categoriesIcons[title]}
+        {categoriesIcons[id]}
         {title}
       </div>
       <ul className={classNames("child-categories", { active: active })}>
