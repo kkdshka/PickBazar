@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCategories, getCategories } from "../../store/categoriesSlice";
+import { fetchCategories, getCategories, categoriesStatus } from "../../store/categoriesSlice";
 import { Category } from "./Category";
 import "./Categories.scss";
 
@@ -9,7 +9,7 @@ export const Categories = () => {
   const [categories, status] = useSelector(getCategories);
 
   useEffect(() => {
-    if (status === "idle") {
+    if (status === categoriesStatus.IDLE) {
       dispatch(fetchCategories());
     }
   }, [status, dispatch]);

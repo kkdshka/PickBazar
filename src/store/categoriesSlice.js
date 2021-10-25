@@ -9,9 +9,11 @@ export const fetchCategories = createAsyncThunk(
   }
 );
 
+export const categoriesStatus = { IDLE: "IDLE", SUCCEEDED: "SUCCEEDED" };
+
 const initialState = {
   data: [],
-  status: "idle",
+  status: categoriesStatus.IDLE,
 };
 
 export const categoriesSlice = createSlice({
@@ -20,7 +22,7 @@ export const categoriesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchCategories.fulfilled, (state, action) => {
-      state.status = "succeeded";
+      state.status = categoriesStatus.SUCCEEDED;
       state.data = action.payload;
     });
   },
