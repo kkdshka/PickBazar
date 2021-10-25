@@ -30,16 +30,22 @@ const categoriesIcons = {
 export const Category = ({ category: { id, title, childCategories } }) => {
   const [active, setActive] = useState(false);
 
+  const handleClick = () => setActive(!active);
+
+  const categoryTitleClassName = classNames("category_title", {
+    active: active,
+  });
+  const childCategoriesClassName = classNames("child-categories", {
+    active: active,
+  });
+
   return (
     <li className="category">
-      <div
-        className={classNames("category_title", { active: active })}
-        onClick={() => setActive(!active)}
-      >
+      <div className={categoryTitleClassName} onClick={handleClick}>
         {categoriesIcons[id]}
         {title}
       </div>
-      <ul className={classNames("child-categories", { active: active })}>
+      <ul className={childCategoriesClassName}>
         {childCategories.map((childCategory) => (
           <SubCategory
             category={childCategory}

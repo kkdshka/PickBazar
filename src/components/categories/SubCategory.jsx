@@ -7,11 +7,12 @@ export const SubCategory = ({ category }) => {
     setActive(!active);
   };
 
+  const childCategoryClassName = classNames("child-category", {
+    active: active,
+  });
+
   return (
-    <li
-      className={classNames("child-category", { active: active })}
-      onClick={handleClick}
-    >
+    <li className={childCategoryClassName} onClick={handleClick}>
       {category.title}
     </li>
   );
