@@ -6,14 +6,13 @@ import "./Categories.scss";
 
 export const Categories = () => {
   const dispatch = useDispatch();
-  const categories = useSelector(getCategories);
-  const categoriesStatus = useSelector((state) => state.categories.status);
+  const [categories, status] = useSelector(getCategories);
 
   useEffect(() => {
-    if (categoriesStatus === "idle") {
+    if (status === "idle") {
       dispatch(fetchCategories());
     }
-  }, [categoriesStatus, dispatch]);
+  }, [status, dispatch]);
 
   return (
     <ul className="categories">

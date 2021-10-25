@@ -26,6 +26,9 @@ export const categoriesSlice = createSlice({
   },
 });
 
-export const getCategories = (state) => state.categories.data;
+export const getCategories = (state) => [
+  state.categories.data,
+  state.categories.status,
+];
 
 export default categoriesSlice.reducer;
