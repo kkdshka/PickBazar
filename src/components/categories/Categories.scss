@@ -24,6 +24,10 @@
     }
     &.active {
       color: #009E7F;
+
+      & > svg > path {
+        fill: #009E7F;
+      }
     }
   }
 }

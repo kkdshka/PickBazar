@@ -1,31 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { SubCategory } from "./SubCategory";
-import {
-  GiChipsBag,
-  GiFruitBowl,
-  GiMeat,
-  GiPaw,
-  GiFamilyHouse,
-  GiMilkCarton,
-  GiCookingPot,
-  GiCoffeeCup,
-  GiMartini,
-  GiDelicatePerfume,
-} from "react-icons/gi";
-
-const categoriesIcons = {
-  1: <GiFruitBowl />,
-  4: <GiMeat />,
-  7: <GiChipsBag />,
-  16: <GiPaw />,
-  21: <GiFamilyHouse />,
-  28: <GiMilkCarton />,
-  35: <GiCookingPot />,
-  40: <GiCoffeeCup />,
-  47: <GiMartini />,
-  55: <GiDelicatePerfume />,
-};
+import { CategoriesIcon } from "./CategoriesIcon";
 
 export const Category = ({ category: { id, title, childCategories } }) => {
   const [active, setActive] = useState(false);
@@ -42,7 +18,7 @@ export const Category = ({ category: { id, title, childCategories } }) => {
   return (
     <li className="category">
       <div className={categoryTitleClassName} onClick={handleClick}>
-        {categoriesIcons[id]}
+        <CategoriesIcon categoryId={id} />
         {title}
       </div>
       <ul className={childCategoriesClassName}>
