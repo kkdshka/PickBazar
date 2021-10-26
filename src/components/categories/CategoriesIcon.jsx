@@ -32,5 +32,7 @@ export const CategoriesIcon = ({ categoryId }) => {
       return <BeverageIcon />;
     case 55:
       return <BeautyIcon />;
+    default:
+      return <div />;
   }
 };
