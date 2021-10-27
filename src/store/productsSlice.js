@@ -33,6 +33,26 @@ export const productsSlice = createSlice({
       state.params = { ...state.params, _start: state.params._start + 10 };
       state.status = productsStatus.IDLE;
     },
+    setCategoryId: (state, action) => {
+      state.params = {
+        ...state.params,
+        "_where[_or][1][category.parentCategory.id]": null,
+        "_where[_or][0][category]": action.payload,
+        _start: 0,
+      };
+      state.data = [];
+      state.status = productsStatus.IDLE;
+    },
+    setParentCategoryId: (state, action) => {
+      state.params = {
+        ...state.params,
+        "_where[_or][1][category.parentCategory.id]": action.payload,
+        "_where[_or][0][category]": null,
+        _start: 0,
+      };
+      state.data = [];
+      state.status = productsStatus.IDLE;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAllProducts.fulfilled, (state, action) => {
@@ -54,6 +74,7 @@ export const getProducts = (state) => [
 
 export const getMaxListSize = (state) => state.products.isMaxListSize;
 
-export const { loadMore } = productsSlice.actions;
+export const { loadMore, setCategoryId, setParentCategoryId } =
+  productsSlice.actions;
 
 export default productsSlice.reducer;
