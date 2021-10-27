@@ -1,24 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import classNames from "classnames";
+import { useDispatch, useSelector } from "react-redux";
 import { SubCategory } from "./SubCategory";
 import { CategoriesIcon } from "./CategoriesIcon";
 import { setParentCategoryId } from "../../store/productsSlice";
-import { useDispatch } from "react-redux";
+import {
+  getActiveParentCategoryId,
+  setActiveParentCategoryId,
+} from "../../store/categoriesSlice";
 
 export const Category = ({ category: { id, title, childCategories } }) => {
-  const [active, setActive] = useState(false);
   const dispatch = useDispatch();
+  const activeCategoryId = useSelector(getActiveParentCategoryId);
 
   const handleClick = () => {
-    setActive(!active);
+    dispatch(setActiveParentCategoryId(id));
     dispatch(setParentCategoryId(id));
   };
 
   const categoryTitleClassName = classNames("category_title", {
-    active: active,
+    active: id === activeCategoryId,
   });
   const childCategoriesClassName = classNames("child-categories", {
-    active: active,
+    active: id === activeCategoryId,
   });
 
   return (
