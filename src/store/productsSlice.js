@@ -3,8 +3,10 @@ import { axiosInstance } from "../api/axiosClient";
 
 export const fetchAllProducts = createAsyncThunk(
   "products/fetchProducts",
-  async () => {
-    const response = await axiosInstance.get("/products");
+  async (_, { getState }) => {
+    const params = getState().products.params;
+
+    const response = await axiosInstance.get("/products", { params: params });
     return response.data;
   }
 );
@@ -12,11 +14,15 @@ export const fetchAllProducts = createAsyncThunk(
 export const productsStatus = { IDLE: "IDLE", SUCCEEDED: "SUCCEEDED" };
 
 const initialState = {
-  productsListSize: 10,
   isMaxListSize: false,
-  allData: [],
   data: [],
   status: productsStatus.IDLE,
+  params: {
+    "_where[_or][1][category.parentCategory.id]": null,
+    "_where[_or][0][category]": null,
+    _start: 0,
+    _limit: 10,
+  },
 };
 
 export const productsSlice = createSlice({
@@ -24,21 +30,19 @@ export const productsSlice = createSlice({
   initialState,
   reducers: {
     loadMore: (state) => {
-      state.productsListSize += 10;
-      if (state.productsListSize >= state.allData.length) {
-        state.isMaxListSize = true;
-      }
-      state.data = state.allData.slice(0, state.productsListSize);
+      state.params = { ...state.params, _start: state.params._start + 10 };
+      state.status = productsStatus.IDLE;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAllProducts.fulfilled, (state, action) => {
-      state.status = productsStatus.SUCCEEDED;
-      state.allData = action.payload;
-      state.data = action.payload.slice(0, state.productsListSize);
-      if (state.productsListSize >= state.allData.length) {
+      const data = action.payload;
+      if (data.length < 10) {
         state.isMaxListSize = true;
       }
+
+      state.status = productsStatus.SUCCEEDED;
+      state.data = state.data.concat(data);
     });
   },
 });
