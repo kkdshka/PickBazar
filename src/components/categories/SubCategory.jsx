@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategoryId } from "../../store/productsSlice";
 import {
   getActiveCategoryId,
   setActiveCategoryId,
@@ -13,7 +12,6 @@ export const SubCategory = ({ category: { id, title } }) => {
 
   const handleClick = () => {
     dispatch(setActiveCategoryId(id));
-    dispatch(setCategoryId(id));
   };
 
   const childCategoryClassName = classNames("child-category", {

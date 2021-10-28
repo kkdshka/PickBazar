@@ -3,7 +3,6 @@ import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { SubCategory } from "./SubCategory";
 import { CategoriesIcon } from "./CategoriesIcon";
-import { setParentCategoryId } from "../../store/productsSlice";
 import {
   getActiveParentCategoryId,
   setActiveParentCategoryId,
@@ -15,7 +14,6 @@ export const Category = ({ category: { id, title, childCategories } }) => {
 
   const handleClick = () => {
     dispatch(setActiveParentCategoryId(id));
-    dispatch(setParentCategoryId(id));
   };
 
   const categoryTitleClassName = classNames("category_title", {

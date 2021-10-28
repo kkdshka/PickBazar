@@ -42,37 +42,38 @@ export const productsSlice = createSlice({
       state.params = { ...state.params, _start: state.params.start + 10 };
       state.status = productsStatus.IDLE;
     },
-    setCategoryId: (state, action) => {
-      state.params = {
-        ...state.params,
-        parentCategoryId: null,
-        categoryId: action.payload,
-        start: 0,
-      };
-      state.data = [];
-      state.status = productsStatus.IDLE;
-    },
-    setParentCategoryId: (state, action) => {
-      state.params = {
-        ...state.params,
-        parentCategoryId: action.payload,
-        categoryId: null,
-        start: 0,
-      };
-      state.data = [];
-      state.status = productsStatus.IDLE;
-    },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchAllProducts.fulfilled, (state, action) => {
-      const data = action.payload;
-      if (data.length < 10) {
-        state.isMaxListSize = true;
-      }
+    builder
+      .addCase(fetchAllProducts.fulfilled, (state, action) => {
+        const data = action.payload;
+        if (data.length < 10) {
+          state.isMaxListSize = true;
+        }
 
-      state.status = productsStatus.SUCCEEDED;
-      state.data = state.data.concat(data);
-    });
+        state.status = productsStatus.SUCCEEDED;
+        state.data = state.data.concat(data);
+      })
+      .addCase("categories/setActiveParentCategoryId", (state, { payload }) => {
+        state.params = {
+          ...state.params,
+          parentCategoryId: payload,
+          categoryId: null,
+          start: 0,
+        };
+        state.data = [];
+        state.status = productsStatus.IDLE;
+      })
+      .addCase("categories/setActiveCategoryId", (state, { payload }) => {
+        state.params = {
+          ...state.params,
+          parentCategoryId: null,
+          categoryId: payload,
+          start: 0,
+        };
+        state.data = [];
+        state.status = productsStatus.IDLE;
+      });
   },
 });
 
@@ -83,7 +84,6 @@ export const getProducts = (state) => [
 
 export const getMaxListSize = (state) => state.products.isMaxListSize;
 
-export const { loadMore, setCategoryId, setParentCategoryId } =
-  productsSlice.actions;
+export const { loadMore } = productsSlice.actions;
 
 export default productsSlice.reducer;
