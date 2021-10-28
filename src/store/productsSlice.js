@@ -6,7 +6,16 @@ export const fetchAllProducts = createAsyncThunk(
   async (_, { getState }) => {
     const params = getState().products.params;
 
-    const response = await axiosInstance.get("/products", { params: params });
+    const requestParams = {
+      "_where[_or][1][category.parentCategory.id]": params.parentCategoryId,
+      "_where[_or][0][category]": params.categoryId,
+      _start: params.start,
+      _limit: params.limit,
+    };
+
+    const response = await axiosInstance.get("/products", {
+      params: requestParams,
+    });
     return response.data;
   }
 );
@@ -18,10 +27,10 @@ const initialState = {
   data: [],
   status: productsStatus.IDLE,
   params: {
-    "_where[_or][1][category.parentCategory.id]": null,
-    "_where[_or][0][category]": null,
-    _start: 0,
-    _limit: 10,
+    parentCategoryId: null,
+    categoryId: null,
+    start: 0,
+    limit: 10,
   },
 };
 
@@ -30,15 +39,15 @@ export const productsSlice = createSlice({
   initialState,
   reducers: {
     loadMore: (state) => {
-      state.params = { ...state.params, _start: state.params._start + 10 };
+      state.params = { ...state.params, _start: state.params.start + 10 };
       state.status = productsStatus.IDLE;
     },
     setCategoryId: (state, action) => {
       state.params = {
         ...state.params,
-        "_where[_or][1][category.parentCategory.id]": null,
-        "_where[_or][0][category]": action.payload,
-        _start: 0,
+        parentCategoryId: null,
+        categoryId: action.payload,
+        start: 0,
       };
       state.data = [];
       state.status = productsStatus.IDLE;
@@ -46,9 +55,9 @@ export const productsSlice = createSlice({
     setParentCategoryId: (state, action) => {
       state.params = {
         ...state.params,
-        "_where[_or][1][category.parentCategory.id]": action.payload,
-        "_where[_or][0][category]": null,
-        _start: 0,
+        parentCategoryId: action.payload,
+        categoryId: null,
+        start: 0,
       };
       state.data = [];
       state.status = productsStatus.IDLE;
