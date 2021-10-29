@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   productsStatus,
   getProducts,
-  fetchAllProducts,
+  fetchProducts,
   loadMore,
   getMaxListSize,
 } from "../../store/productsSlice";
@@ -18,7 +18,7 @@ export const Products = () => {
 
   useEffect(() => {
     if (status === productsStatus.IDLE) {
-      dispatch(fetchAllProducts());
+      dispatch(fetchProducts());
     }
   }, [status, dispatch]);
 
