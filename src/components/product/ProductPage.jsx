@@ -8,7 +8,9 @@ import {
   fetchAllCategoryProducts,
   getState,
   productStatus,
+  reset,
 } from "../../store/productSlice";
+import "./Product.scss";
 
 export const ProductPage = () => {
   const query = useQuery();
@@ -27,8 +29,12 @@ export const ProductPage = () => {
     }
   }, [status, dispatch, categoryId, id]);
 
+  useEffect(() => {
+    return () => dispatch(reset());
+  }, [id]);
+
   return (
-    <div>
+    <div className="product-page_container">
       <Header />
       {product && <Product product={product} />}
     </div>

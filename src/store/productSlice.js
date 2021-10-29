@@ -26,7 +26,9 @@ const initialState = {
 export const productSlice = createSlice({
   name: "product",
   initialState,
-  reducers: {},
+  reducers: {
+    reset: () => initialState,
+  },
   extraReducers: (builder) => {
     builder.addCase(
       fetchAllCategoryProducts.fulfilled,
@@ -44,5 +46,7 @@ export const getState = (state) => [
   state.product.relatedProducts,
   state.product.status,
 ];
+
+export const { reset } = productSlice.actions;
 
 export default productSlice.reducer;
