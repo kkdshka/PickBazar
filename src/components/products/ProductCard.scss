@@ -12,6 +12,8 @@
     width: 60%;
     cursor: pointer;
 
+    object-fit: contain;
+
     &_wrapper {
       display: flex;
       justify-content: center;
