@@ -39,7 +39,7 @@ export const productsSlice = createSlice({
   initialState,
   reducers: {
     loadMore: (state) => {
-      state.params = { ...state.params, _start: state.params.start + 10 };
+      state.params = { ...state.params, start: state.params.start + 10 };
       state.status = productsStatus.IDLE;
     },
   },
