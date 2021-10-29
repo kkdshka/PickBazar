@@ -19,14 +19,16 @@
   text-decoration: none;
 }
 
-.auth-form_divider {
-  width: 100%;
-  font-size: 15px;
-  margin-top: 34px;
-  margin-bottom: 23px;
-}
+.auth-form {
+  &_divider {
+    width: 100%;
+    font-size: 15px;
+    margin-top: 34px;
+    margin-bottom: 23px;
+  }
 
-.auth-form_icon {
-  font-size: 17px;
-  margin-right: 5px;
+  &_icon {
+    font-size: 17px;
+    margin-right: 5px;
+  }
 }

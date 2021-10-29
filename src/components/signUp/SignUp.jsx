@@ -86,7 +86,7 @@ export const SignUp = () => {
         />
         <div className="sign-up_agreement">
           By signing up, you agree to Pickbazar's{" "}
-          <span className="link">Terms & Condition</span>
+          <span className="sign-up_agreement_link">Terms & Condition</span>
         </div>
         <AuthFormSubmit formik={formik} />
         <div>

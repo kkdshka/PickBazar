@@ -11,9 +11,9 @@ export const Search = () => {
 
   return (
     <div className="search">
-      <IoSearch className="search-icon" />
+      <IoSearch className="search_icon" />
       <input
-        className="search-input"
+        className="search_input"
         type="text"
         value={value}
         onChange={handleChange}

@@ -1,23 +1,20 @@
-%flex-row {
-  display: flex;
-  flex-direction: row;
-}
+.sign-up {
+  &_agreement {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 13px;
+    color: #77798C;
 
-.sign-up_agreement {
-  margin-top: 20px;
-  margin-bottom: 30px;
-  font-size: 13px;
-  color: #77798C
-}
+    &_link {
+      color: #4285f4;
+      cursor: pointer;
+    }
+  }
 
-.link {
-  color: #4285f4;
-  cursor: pointer;
-}
-
-.sign-up_link {
-  font-weight: 700;
-  color: #009E7F;
-  text-decoration: underline;
-  cursor: pointer;
+  &_link {
+    font-weight: 700;
+    color: #009E7F;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }

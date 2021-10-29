@@ -7,33 +7,33 @@
   align-items: center;
   border-radius: 6px;
   background-color: #F3F3F3;
-}
 
-.search-input {
-  font-family: "Lato", sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 18px;
-  width: 100%;
-  border: none;
-  background-color: #F3F3F3;
-
-  &:focus {
-    outline: none;
-  }
-
-  ::placeholder {
+  &_input {
     font-family: "Lato", sans-serif;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 700;
     font-size: 15px;
     line-height: 18px;
+    width: 100%;
+    border: none;
+    background-color: #F3F3F3;
+
+    &:focus {
+      outline: none;
+    }
+
+    ::placeholder {
+      font-family: "Lato", sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 15px;
+      line-height: 18px;
+      color: rgba(13, 17, 54, 0.5);
+    }
+  }
+
+  &_icon {
+    padding: 15px;
     color: rgba(13, 17, 54, 0.5);
   }
-}
-
-.search-icon {
-  padding: 15px;
-  color: rgba(13, 17, 54, 0.5);
 }
