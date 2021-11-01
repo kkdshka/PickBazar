@@ -6,6 +6,7 @@ import {
   productStatus,
   reset,
   getStatus,
+  getState,
 } from "../store/productSlice";
 
 export function useProductData() {
@@ -22,4 +23,6 @@ export function useProductData() {
   useEffect(() => {
     return () => dispatch(reset());
   }, [id, dispatch]);
+
+  return useSelector(getState);
 }

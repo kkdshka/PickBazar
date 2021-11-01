@@ -1,6 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { getState } from "../../store/productSlice";
 import { Product } from "./Product";
 import { Header } from "../topSection/Header";
 import { ProductsList } from "../productsList/ProductsList";
@@ -8,8 +6,7 @@ import { useProductData } from "../../hooks/useProductData";
 import "./ProductPage.scss";
 
 export const ProductPage = () => {
-  useProductData();
-  const [product, relatedProducts] = useSelector(getState);
+  const [product, relatedProducts] = useProductData();
 
   return (
     <div className="product-page_container">
