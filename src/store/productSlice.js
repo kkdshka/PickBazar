@@ -3,25 +3,30 @@ import { axiosInstance } from "../api/axiosClient";
 
 export const fetchAllCategoryProducts = createAsyncThunk(
   "product/fetchAllCategoryProducts",
-  async ({ categoryId, productId }) => {
-    const requestParams = {
-      "_where[_or][0][category]": categoryId,
-    };
+  async ({ productId }) => {
+    const productResponse = await axiosInstance.get(`/products/${productId}`);
 
-    const response = await axiosInstance.get("/products", {
+    const requestParams = {
+      "_where[_or][0][category]": productResponse.data.category.id,
+    };
+    const productsResponse = await axiosInstance.get("/products", {
       params: requestParams,
     });
-    return { data: response.data, productId };
+
+    return {
+      relatedProducts: productsResponse.data,
+      product: productResponse.data,
+    };
   }
 );
 
 export const productStatus = { IDLE: "IDLE", SUCCEEDED: "SUCCEEDED" };
 
-const initialState = {
+const initialState = Object.freeze({
   value: null,
   relatedProducts: [],
   status: productStatus.IDLE,
-};
+});
 
 export const productSlice = createSlice({
   name: "product",
@@ -32,12 +37,15 @@ export const productSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(
       fetchAllCategoryProducts.fulfilled,
-      (state, { payload: { data, productId } }) => {
+      (state, { payload: { relatedProducts, product } }) => {
         state.status = productStatus.SUCCEEDED;
-        state.relatedProducts = data.filter(
-          (item) => item.id !== Number(productId)
+        state.relatedProducts = relatedProducts.filter(
+          (item) => item.id !== product.id
         );
-        state.value = data.filter((item) => item.id === Number(productId))[0];
+        state.value = product;
+        state.value.category.parentCategoryName = relatedProducts.filter(
+          (item) => item.id === product.id
+        )[0].category.parentCategory.title;
       }
     );
   },

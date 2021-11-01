@@ -7,22 +7,17 @@ import {
   reset,
   getStatus,
 } from "../store/productSlice";
-import { useQuery } from "./useQuery";
 
 export function useProductData() {
-  const query = useQuery();
   const dispatch = useDispatch();
   const status = useSelector(getStatus);
   const { id } = useParams();
-  const categoryId = query.get("category-id");
 
   useEffect(() => {
     if (status === productStatus.IDLE) {
-      dispatch(
-        fetchAllCategoryProducts({ categoryId: categoryId, productId: id })
-      );
+      dispatch(fetchAllCategoryProducts({ productId: id }));
     }
-  }, [status, dispatch, categoryId, id]);
+  }, [status, dispatch, id]);
 
   useEffect(() => {
     return () => dispatch(reset());

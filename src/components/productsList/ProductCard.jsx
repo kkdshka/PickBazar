@@ -8,7 +8,7 @@ export const ProductCard = ({ product }) => {
   const imageURL = product.photos[0].url;
   const src = baseURL + imageURL.slice(1, imageURL.length);
 
-  const path = `/product/${product.id}?category-id=${product.category.id}`;
+  const path = `/product/${product.id}`;
 
   return (
     <div className="product-card">

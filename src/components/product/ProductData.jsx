@@ -17,8 +17,8 @@ export const ProductData = ({ product }) => {
           <CartButton />
         </div>
         <div className="product-data_tags">
+          <Tag name={product.category.parentCategoryName} />
           <Tag name={product.category.title} />
-          <Tag name={product.category.parentCategory.title} />
         </div>
       </div>
     </div>
