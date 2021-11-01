@@ -5,3 +5,11 @@ body {
   font-family: 'Lato', sans-serif;
   font-size: 15px;
 }
+
+.unstyled-link {
+  text-decoration: none;
+
+  &:focus, &:hover, &:visited, &:link, &:active {
+    text-decoration: none;
+  }
+}
