@@ -1,0 +1,41 @@
+.product-photos {
+  &_main-image {
+    height: 330px;
+    width: 50%;
+
+    margin: 30px;
+
+    object-fit: contain;
+  }
+
+  &_image {
+    height: 68px;
+    width: auto;
+
+    border: 1px solid #F1F1F1;
+    border-radius: 6px;
+
+    object-fit: contain;
+
+    &_active {
+      border: 2px solid #009E7F;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &_images-container {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    margin: 30px;
+  }
+
+  &_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

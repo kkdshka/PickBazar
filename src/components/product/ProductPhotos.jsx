@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { baseURL } from "../../api/axiosClient";
 import classNames from "classnames";
+import "./ProductPhotos.scss";
 
 const getUrl = (url) => baseURL + url.slice(1);
 
@@ -10,15 +11,19 @@ export const ProductPhotos = ({ photos }) => {
   const handleOnPhotoClick = (photo) => () => setMainPhoto(photo);
 
   const getImageClassName = (photo) => {
-    return classNames("product_image", {
-      product_image_active: mainPhoto.hash === photo.hash,
+    return classNames("product-photos_image", {
+      "product-photos_image_active": mainPhoto.hash === photo.hash,
     });
   };
 
   return (
-    <div className="product_photos_container">
-      <img className="product_main-image" src={getUrl(mainPhoto.url)} alt="" />
-      <div className="product_images-container">
+    <div className="product-photos_container">
+      <img
+        className="product-photos_main-image"
+        src={getUrl(mainPhoto.url)}
+        alt=""
+      />
+      <div className="product-photos_images-container">
         {photos.map((photo, index) => (
           <img
             onClick={handleOnPhotoClick(photo)}

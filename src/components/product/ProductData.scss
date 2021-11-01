@@ -1,0 +1,55 @@
+.product-data {
+  margin-top: 50px;
+  width: 75%;
+
+  display: flex;
+  flex-direction: column;
+
+  &_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &_first-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  &_name {
+    font: 700 21px 'Poppins', sans-serif;
+    margin-right: 160px;
+  }
+
+  &_price {
+    font-weight: 700;
+    font-size: 16px;
+    color: #009E7F;
+  }
+
+  &_size {
+    font-weight: 700;
+    font-size: 13px;
+    color: #77798C;
+    margin-bottom: 30px;
+  }
+
+  &_description {
+    color: #424561;
+    line-height: 30px;
+    margin-bottom: 120px;
+  }
+
+  &_cart {
+    margin-bottom: 30px;
+  }
+
+  &_tags {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin-bottom: 81px;
+  }
+}

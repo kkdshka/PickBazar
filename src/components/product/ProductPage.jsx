@@ -31,7 +31,7 @@ export const ProductPage = () => {
 
   useEffect(() => {
     return () => dispatch(reset());
-  }, [id]);
+  }, [id, dispatch]);
 
   return (
     <div className="product-page_container">

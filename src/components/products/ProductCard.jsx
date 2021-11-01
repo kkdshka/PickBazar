@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { baseURL } from "../../api/axiosClient";
-import { ReactComponent as CartIcon } from "../../img/cart.svg";
+import { CartButton } from "../common/CartButton";
 import "./ProductCard.scss";
 
 export const ProductCard = ({ product }) => {
@@ -35,9 +35,7 @@ export const ProductCard = ({ product }) => {
       </div>
       <div className="product-card_order">
         <div className="product-card_price">${product.price}</div>
-        <button className="product-card_cart-button">
-          <CartIcon /> Cart
-        </button>
+        <CartButton />
       </div>
     </div>
   );
