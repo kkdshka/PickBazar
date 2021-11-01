@@ -34,7 +34,9 @@ export const productSlice = createSlice({
       fetchAllCategoryProducts.fulfilled,
       (state, { payload: { data, productId } }) => {
         state.status = productStatus.SUCCEEDED;
-        state.relatedProducts = data;
+        state.relatedProducts = data.filter(
+          (item) => item.id !== Number(productId)
+        );
         state.value = data.filter((item) => item.id === Number(productId))[0];
       }
     );
