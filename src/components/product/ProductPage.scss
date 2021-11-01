@@ -13,13 +13,5 @@
       margin-top: 20px;
       margin-bottom: 30px;
     }
-
-    &_container {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-auto-rows: minmax(300px, auto);;
-      grid-column-gap: 30px;
-      grid-row-gap: 30px;
-    }
   }
 }

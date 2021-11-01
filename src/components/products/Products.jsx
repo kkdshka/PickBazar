@@ -7,8 +7,8 @@ import {
   loadMore,
   getMaxListSize,
 } from "../../store/productsSlice";
-import { ProductCard } from "./ProductCard";
 import { LoadMore } from "./LoadMore";
+import { ProductsList } from "../productsList/ProductsList";
 import "./Products.scss";
 
 export const Products = () => {
@@ -28,11 +28,7 @@ export const Products = () => {
 
   return (
     <div className="products_container">
-      <div className="products_cards-container">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+      <ProductsList products={products} />
       <div className="products_load-more_container">
         {!isMaxListSize && <LoadMore onClick={handleLoadMoreClick} />}
       </div>
