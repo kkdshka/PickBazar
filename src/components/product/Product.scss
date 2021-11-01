@@ -1,0 +1,22 @@
+.product {
+  &_container {
+    min-height: 500px;
+    margin: 50px;
+    background-color: white;
+
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    align-content: stretch;
+  }
+
+  &_photos {
+    width: 100%;
+    border-right: 1px solid #F1F1F1;
+  }
+
+  &_data {
+    width: 100%;
+    border-left: 1px solid #F1F1F1;
+  }
+}

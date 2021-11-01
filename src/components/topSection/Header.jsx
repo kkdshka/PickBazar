@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Search } from "./Search";
 import { SignUp } from "../signUp/SignUp";
@@ -13,7 +14,9 @@ export const Header = () => {
   return (
     <div className="header">
       <div className="flex-row-container">
-        <img src={"/logo.png"} alt="logo" className="logo" />
+        <Link to="/">
+          <img src={"/logo.png"} alt="logo" className="logo" />
+        </Link>
         <Search />
       </div>
       <div>

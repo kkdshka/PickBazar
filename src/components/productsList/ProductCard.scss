@@ -10,6 +10,9 @@
   &_image {
     height: auto;
     width: 60%;
+    cursor: pointer;
+
+    object-fit: contain;
 
     &_wrapper {
       display: flex;
@@ -22,6 +25,7 @@
     color: #0D1136;
 
     margin-bottom: 7px;
+    cursor: pointer;
   }
 
   &_size {
@@ -40,25 +44,5 @@
   &_price {
     font-weight: 700;
     color: #009E7F;
-  }
-
-  &_cart-button {
-    background: white;
-    color: #009E7F;
-    border: 1px solid #F7F7F7;
-    border-radius: 85px;
-    font-weight: 700;
-    font-size: 13px;
-    padding: 10px 20px;
-
-    &:hover {
-      background: #009E7F;
-      color: white;
-      border: 1px solid #009E7F;
-
-      & > svg > path {
-        fill: white;
-      }
-    }
   }
 }

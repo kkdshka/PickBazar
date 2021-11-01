@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { axiosInstance } from "../api/axiosClient";
 
-export const fetchAllProducts = createAsyncThunk(
+export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async (_, { getState }) => {
     const params = getState().products.params;
@@ -39,13 +39,13 @@ export const productsSlice = createSlice({
   initialState,
   reducers: {
     loadMore: (state) => {
-      state.params = { ...state.params, _start: state.params.start + 10 };
+      state.params = { ...state.params, start: state.params.start + 10 };
       state.status = productsStatus.IDLE;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllProducts.fulfilled, (state, action) => {
+      .addCase(fetchProducts.fulfilled, (state, action) => {
         const data = action.payload;
         if (data.length < 10) {
           state.isMaxListSize = true;

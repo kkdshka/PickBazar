@@ -5,6 +5,7 @@ import signInReducer from "./signInSlice";
 import couponsReducer from "./couponsSlice";
 import categoriesReducer from "./categoriesSlice";
 import productsReducer from "./productsSlice";
+import productReducer from "./productSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     coupons: couponsReducer,
     categories: categoriesReducer,
     products: productsReducer,
+    product: productReducer,
   },
 });
