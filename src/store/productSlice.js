@@ -46,8 +46,9 @@ export const productSlice = createSlice({
 export const getState = (state) => [
   state.product.value,
   state.product.relatedProducts,
-  state.product.status,
 ];
+
+export const getStatus = (state) => state.product.status;
 
 export const { reset } = productSlice.actions;
 
