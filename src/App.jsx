@@ -9,15 +9,9 @@ export const App = () => {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/auth/google/callback">
-            <GoogleAuthCallback />
-          </Route>
-          <Route path="/product/:id">
-            <ProductPage />
-          </Route>
-          <Route path="/">
-            <HomePage />
-          </Route>
+          <Route path="/auth/google/callback" component={GoogleAuthCallback} />
+          <Route path="/product/:id" component={ProductPage} />
+          <Route path="/" component={HomePage} />
         </Switch>
       </Router>
     </div>
