@@ -36,22 +36,13 @@ export const cartSlice = createSlice({
   },
 });
 
-const toArray = (products) => {
-  let arrayOfProducts = [];
-
-  for (const key in products) {
-    arrayOfProducts.push({
-      id: key,
-      data: products[key].product,
-      count: products[key].count,
-    });
-  }
-
-  return arrayOfProducts;
-};
-
 export const getCartState = (state) => {
-  const products = toArray(state.cart.products);
+  const products = Object.values(state.cart.products).map((item) => ({
+    id: item.product.id,
+    data: item.product,
+    count: item.count,
+  }));
+
   const count = products.reduce(
     (previousValue, currentValue) => previousValue + currentValue.count,
     0
