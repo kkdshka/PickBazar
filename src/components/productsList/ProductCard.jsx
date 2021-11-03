@@ -2,14 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../store/cartSlice";
-import { baseURL } from "../../api/axiosClient";
+import { getImgUrl } from "../../api/axiosClient";
 import { CartButton } from "../common/CartButton";
 import "./ProductCard.scss";
 
 export const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
-  const imageURL = product.photos[0].url;
-  const src = baseURL + imageURL.slice(1, imageURL.length);
 
   const path = `/product/${product.id}`;
 
@@ -24,7 +22,7 @@ export const ProductCard = ({ product }) => {
           <img
             className="product-card_image"
             alt={product.photos[0].alternativeText}
-            src={src}
+            src={getImgUrl(product.photos[0].url)}
           />
         </div>
       </Link>
