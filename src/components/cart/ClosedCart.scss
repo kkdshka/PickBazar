@@ -1,0 +1,42 @@
+.closed-cart {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &_container {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2000;
+
+    min-width: 100px;
+    min-height: 94px;
+    padding: 10px;
+
+    background-color: #009E7F;
+    border-radius: 6px 0 0 6px;
+  }
+
+  &_items-count {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: white;
+  }
+
+  &_items-price {
+    position: absolute;
+    bottom: 10px;
+    width: 80px;
+    height: 35px;
+    border: none;
+    border-radius: 6px;
+    background-color: white;
+    color: #009E7F;
+    cursor: pointer;
+  }
+}
+

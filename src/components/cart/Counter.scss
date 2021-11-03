@@ -1,0 +1,36 @@
+.counter {
+  background: #F7F7F7;
+  border-radius: 200px;
+
+  &_element {
+    width: 30px;
+    height: 30px;
+    color: #77798C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &_increment {
+      cursor: pointer;
+
+      &:hover {
+        background-color: #F3F3F3;
+        border-radius: 200px 200px 0 0;
+      }
+    }
+
+    &_decrement {
+      cursor: pointer;
+
+      &:hover {
+        background-color: #F3F3F3;
+        border-radius: 0 0 200px 200px;
+      }
+    }
+
+    &_value {
+      font-weight: 700;
+      color: #0D1136;
+    }
+  }
+}

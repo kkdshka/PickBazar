@@ -16,3 +16,7 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export function getImgUrl(url) {
+  return baseURL + url.slice(1, url.length);
+}
