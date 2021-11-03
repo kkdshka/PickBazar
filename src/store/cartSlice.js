@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  products: [],
+  products: {},
 };
 
 export const cartSlice = createSlice({
@@ -10,61 +10,49 @@ export const cartSlice = createSlice({
   reducers: {
     addProduct: (state, { payload }) => {
       const products = state.products;
-      const isAdded =
-        products.filter((product) => product.id === payload.id).length > 0;
+      const isAdded = Boolean(products[payload.id]);
       if (isAdded) {
-        state.products = products.map((product) => {
-          if (product.id === payload.id) {
-            return { ...product, count: product.count + 1 };
-          } else {
-            return product;
-          }
-        });
+        state.products[payload.id].count += 1;
       } else {
-        state.products.push({ id: payload.id, data: payload, count: 1 });
+        state.products[payload.id] = { product: payload, count: 1 };
       }
     },
     removeProduct: (state, { payload }) => {
-      state.products = state.products.filter(
-        (product) => product.id !== payload
-      );
+      delete state.products[payload];
     },
     incrementProductCount: (state, { payload }) => {
-      state.products = state.products.map((product) => {
-        if (product.id === payload) {
-          return {
-            ...product,
-            count: product.count + 1,
-          };
-        } else {
-          return product;
-        }
-      });
+      const product = state.products[payload];
+
+      state.products[payload] = { ...product, count: product.count + 1 };
     },
     decrementProductCount: (state, { payload }) => {
-      state.products = state.products
-        .filter((product) => {
-          return (
-            product.id !== payload ||
-            (product.id === payload && product.count > 1)
-          );
-        })
-        .map((product) => {
-          if (product.id === payload) {
-            return {
-              ...product,
-              count: product.count - 1,
-            };
-          } else {
-            return product;
-          }
-        });
+      const product = state.products[payload];
+
+      if (product.count > 1) {
+        state.products[payload] = { ...product, count: product.count - 1 };
+      } else {
+        delete state.products[payload];
+      }
     },
   },
 });
 
+const toArray = (products) => {
+  let arrayOfProducts = [];
+
+  for (const key in products) {
+    arrayOfProducts.push({
+      id: key,
+      data: products[key].product,
+      count: products[key].count,
+    });
+  }
+
+  return arrayOfProducts;
+};
+
 export const getCartState = (state) => {
-  const products = state.cart.products;
+  const products = toArray(state.cart.products);
   const count = products.reduce(
     (previousValue, currentValue) => previousValue + currentValue.count,
     0
@@ -72,7 +60,7 @@ export const getCartState = (state) => {
   const price = products
     .reduce(
       (previousValue, currentValue) =>
-        (previousValue + currentValue.data.price) * currentValue.count,
+        previousValue + currentValue.data.price * currentValue.count,
       0
     )
     .toFixed(2);
