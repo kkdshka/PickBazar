@@ -10,7 +10,8 @@ export const cartSlice = createSlice({
   reducers: {
     addProduct: (state, { payload }) => {
       const products = state.products;
-      if (products[payload.id] === undefined) {
+      const isAdded = products[payload.id] === undefined;
+      if (isAdded) {
         state.products[payload.id] = { product: payload, count: 1 };
       } else {
         state.products[payload.id].count += 1;
