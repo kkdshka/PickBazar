@@ -13,6 +13,8 @@ import "./ProductInCart.scss";
 export const ProductInCart = ({ product }) => {
   const dispatch = useDispatch();
 
+  const totalPrice = (product.data.price * product.count).toFixed(2);
+
   const handleIncrement = () => {
     dispatch(incrementProductCount(product.id));
   };
@@ -44,9 +46,7 @@ export const ProductInCart = ({ product }) => {
           {product.count} x {product.data.size}
         </div>
       </div>
-      <div className="product-in-cart_total">
-        $ {(product.data.price * product.count).toFixed(2)}
-      </div>
+      <div className="product-in-cart_total">$ {totalPrice}</div>
       <div className="product-in-cart_remove-icon">
         <CloseIcon onClick={handleRemove} />
       </div>
