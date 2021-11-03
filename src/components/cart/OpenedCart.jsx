@@ -6,6 +6,23 @@ import { ReactComponent as EmptyCartIcon } from "../../img/emptyCart.svg";
 import "./OpenedCart.scss";
 
 export const OpenedCart = ({ products, count, price, close }) => {
+  let cartData;
+
+  if (count === 0) {
+    cartData = (
+      <div className="opened-cart_products_no-products">
+        <EmptyCartIcon className="opened-cart_products_no-products_cart-icon" />
+        <div className="opened-cart_products_no-products_text">
+          No products found
+        </div>
+      </div>
+    );
+  } else {
+    cartData = products.map((product) => (
+      <ProductInCart product={product} key={`product-in-cart-${product.id}`} />
+    ));
+  }
+
   return (
     <div className="opened-cart">
       <div className="opened-cart_header">
@@ -15,23 +32,7 @@ export const OpenedCart = ({ products, count, price, close }) => {
           <CloseIcon onClick={close} />
         </div>
       </div>
-      <div className="opened-cart_products">
-        {count === 0 ? (
-          <div className="opened-cart_products_no-products">
-            <EmptyCartIcon className="opened-cart_products_no-products_cart-icon" />
-            <div className="opened-cart_products_no-products_text">
-              No products found
-            </div>
-          </div>
-        ) : (
-          products.map((product) => (
-            <ProductInCart
-              product={product}
-              key={`product-in-cart-${product.id}`}
-            />
-          ))
-        )}
-      </div>
+      <div className="opened-cart_products">{cartData}</div>
       <div className="opened-cart_checkout">
         <span className="opened-cart_checkout_text">Checkout</span>
         <button className="opened-cart_checkout_button">${price}</button>

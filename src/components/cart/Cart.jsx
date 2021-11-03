@@ -11,14 +11,16 @@ export const Cart = () => {
   const openCart = () => setOpen(true);
   const closeCart = () => setOpen(false);
 
-  return isOpen ? (
-    <OpenedCart
-      products={products}
-      count={count}
-      price={price}
-      close={closeCart}
-    />
-  ) : (
-    <ClosedCart count={count} price={price} open={openCart} />
-  );
+  if (isOpen) {
+    return (
+      <OpenedCart
+        products={products}
+        count={count}
+        price={price}
+        close={closeCart}
+      />
+    );
+  } else {
+    return <ClosedCart count={count} price={price} open={openCart} />;
+  }
 };
