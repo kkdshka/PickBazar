@@ -1,0 +1,14 @@
+.checkout-page {
+  background-color: #F7F7F7;
+  height: 100vh;
+}
+
+.checkout {
+  &_container {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 55px
+  }
+}

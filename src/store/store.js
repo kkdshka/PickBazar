@@ -18,6 +18,7 @@ import categoriesReducer from "./categoriesSlice";
 import productsReducer from "./productsSlice";
 import productReducer from "./productSlice";
 import cartReducer from "./cartSlice";
+import checkoutReducer from "./checkoutSlice";
 
 const reducers = combineReducers({
   signUp: signUpReducer,
@@ -28,12 +29,13 @@ const reducers = combineReducers({
   products: productsReducer,
   product: productReducer,
   cart: cartReducer,
+  checkout: checkoutReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["cart"],
+  whitelist: ["cart", "checkout"],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

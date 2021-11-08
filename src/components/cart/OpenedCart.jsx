@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ProductInCart } from "./ProductInCart";
 import { CloseIcon } from "../common/CloseIcon";
 import { ReactComponent as CartIcon } from "../../img/shopCartGreen.svg";
@@ -35,7 +36,9 @@ export const OpenedCart = ({ products, count, price, close }) => {
       <div className="opened-cart_products">{cartData}</div>
       <div className="opened-cart_checkout">
         <span className="opened-cart_checkout_text">Checkout</span>
-        <button className="opened-cart_checkout_button">${price}</button>
+        <Link to="/checkout">
+          <button className="opened-cart_checkout_button">${price}</button>
+        </Link>
       </div>
     </div>
   );
