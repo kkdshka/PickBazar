@@ -3,6 +3,8 @@ import { v4 as uuid } from "uuid";
 
 const initialState = {
   addresses: [],
+  selectedAddress: null,
+  selectedSchedule: null,
 };
 
 export const checkoutSlice = createSlice({
@@ -22,12 +24,28 @@ export const checkoutSlice = createSlice({
         address.id === payload.id ? payload : address
       );
     },
+    selectAddress: (state, { payload }) => {
+      state.selectedAddress = payload;
+    },
+    selectSchedule: (state, { payload }) => {
+      state.selectedSchedule = payload;
+    },
   },
 });
 
-export const getCheckoutState = (state) => ({
+export const getCheckoutAddressesState = (state) => ({
   addresses: state.checkout.addresses,
+  selectedAddress: state.checkout.selectedAddress,
 });
-export const { addAddress, removeAddress, editAddress } = checkoutSlice.actions;
+
+export const getCheckoutSchedule = (state) => state.checkout.selectedSchedule;
+
+export const {
+  addAddress,
+  removeAddress,
+  editAddress,
+  selectAddress,
+  selectSchedule,
+} = checkoutSlice.actions;
 
 export default checkoutSlice.reducer;

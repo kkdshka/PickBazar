@@ -4,16 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addAddress,
   editAddress,
-  getCheckoutState,
   removeAddress,
+  getCheckoutAddressesState,
+  selectAddress,
 } from "../../store/checkoutSlice";
 import { CheckoutCard } from "./cards/CheckoutCard";
 import { AddressForm } from "./forms/AddressForm";
 import { Modal } from "../common/Modal";
 
-export const Addresses = ({ activeAddress, setActiveAddress }) => {
+export const Addresses = () => {
   const dispatch = useDispatch();
-  const { addresses } = useSelector(getCheckoutState);
+  const { addresses, selectedAddress } = useSelector(getCheckoutAddressesState);
   const [modalContent, setModalContent] = useState(<></>);
   const [openModal, setOpenModal] = useState(false);
   const handleCloseModal = () => setOpenModal(false);
@@ -64,9 +65,11 @@ export const Addresses = ({ activeAddress, setActiveAddress }) => {
 
   const handleOnDeleteAddressClick = (id) => () => dispatch(removeAddress(id));
 
-  const handleOnAddressCardClick = (address) => () => setActiveAddress(address);
+  const handleOnAddressCardClick = (address) => () =>
+    dispatch(selectAddress(address));
 
-  const isActiveAddressCard = (id) => activeAddress && activeAddress.id === id;
+  const isActiveAddressCard = (id) =>
+    selectedAddress && selectedAddress.id === id;
 
   return (
     <CheckoutCard

@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectSchedule, getCheckoutSchedule } from "../../store/checkoutSlice";
 import { ContentCard } from "./cards/ContentCard";
 import { CheckoutCard } from "./cards/CheckoutCard";
 
@@ -9,9 +11,14 @@ const schedules = [
   { id: 4, title: "2pm-5pm", text: "2:00 PM - 5:00 PM" },
 ];
 
-export const Schedule = ({ activeSchedule, setActiveSchedule }) => {
-  const isActiveSchedule = (id) => activeSchedule && activeSchedule.id === id;
-  const handleOnScheduleClick = (schedule) => () => setActiveSchedule(schedule);
+export const Schedule = () => {
+  const selectedSchedule = useSelector(getCheckoutSchedule);
+  const dispatch = useDispatch();
+
+  const isActiveSchedule = (id) =>
+    selectedSchedule && selectedSchedule.id === id;
+  const handleOnScheduleClick = (schedule) => () =>
+    dispatch(selectSchedule(schedule));
 
   return (
     <CheckoutCard id={2} header="Delivery Schedule">
