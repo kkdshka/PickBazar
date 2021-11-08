@@ -14,7 +14,7 @@ export const checkoutSlice = createSlice({
     },
     removeAddress: (state, { payload }) => {
       state.addresses = state.addresses.filter(
-        (address) => address.id === payload
+        (address) => address.id !== payload
       );
     },
     editAddress: (state, { payload }) => {
