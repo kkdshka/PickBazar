@@ -15,6 +15,12 @@
   }
 
   &_title {
+    color: #0D1136;
+    margin-bottom: 11px;
+    cursor: pointer;
+  }
+
+  &_editable-title {
     font-weight: 700;
     color: #0D1136;
     margin-bottom: 11px;
@@ -22,6 +28,12 @@
   }
 
   &_text {
+    font-weight: 700;
+    color: #424561;
+    line-height: 24px;
+  }
+
+  &_editable-text {
     color: #424561;
     line-height: 24px;
   }

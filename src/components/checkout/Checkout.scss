@@ -11,4 +11,10 @@
     justify-content: center;
     gap: 55px
   }
+
+  &_credentials {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ContentEditableCard } from "./cards/ContentEditableCard";
+import { ContentCard } from "./cards/ContentCard";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addAddress,
@@ -11,10 +11,9 @@ import { CheckoutCard } from "./cards/CheckoutCard";
 import { AddressForm } from "./forms/AddressForm";
 import { Modal } from "../common/Modal";
 
-export const Addresses = () => {
+export const Addresses = ({ activeAddress, setActiveAddress }) => {
   const dispatch = useDispatch();
   const { addresses } = useSelector(getCheckoutState);
-  const [activeAddress, setActiveAddress] = useState(null);
   const [modalContent, setModalContent] = useState(<></>);
   const [openModal, setOpenModal] = useState(false);
   const handleCloseModal = () => setOpenModal(false);
@@ -79,7 +78,7 @@ export const Addresses = () => {
       {openModal && <Modal>{modalContent}</Modal>}
       {addresses &&
         addresses.map((address) => (
-          <ContentEditableCard
+          <ContentCard
             title={address.title}
             text={address.address}
             active={isActiveAddressCard(address.id)}
@@ -87,6 +86,7 @@ export const Addresses = () => {
             onDelete={handleOnDeleteAddressClick(address.id)}
             onEdit={handleOnEditAddressClick(address)}
             key={address.id}
+            editable
           />
         ))}
     </CheckoutCard>
