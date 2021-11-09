@@ -5,11 +5,15 @@ import { CheckoutForm } from "./CheckoutForm";
 import { FormikInput } from "../../common/FormikInput";
 
 const validationSchema = Yup.object({
-  title: Yup.string().required("Title is required!"),
-  address: Yup.string().required("Address is required!"),
+  number: Yup.string().required("Title is required!"),
 });
 
-export const AddressForm = ({ close, initialValues, onSubmit, title }) => {
+export const ContactNumberForm = ({
+  close,
+  initialValues,
+  onSubmit,
+  title,
+}) => {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
@@ -21,14 +25,12 @@ export const AddressForm = ({ close, initialValues, onSubmit, title }) => {
       formik={formik}
       close={close}
       title={title}
-      submitName="Save Address"
+      submitName="Save Number"
     >
-      <FormikInput formik={formik} id="title" placeholder="Enter title" />
       <FormikInput
-        type="textarea"
         formik={formik}
-        id="address"
-        placeholder="Enter address"
+        id="number"
+        placeholder="Enter a phone number"
       />
     </CheckoutForm>
   );

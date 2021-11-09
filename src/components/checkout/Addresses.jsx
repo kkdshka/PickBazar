@@ -30,7 +30,9 @@ export const Addresses = () => {
     };
 
     const onSubmit = (values) => {
-      dispatch(addAddress({ ...values, id: uuid() }));
+      const newAddress = { ...values, id: uuid() };
+      dispatch(addAddress(newAddress));
+      dispatch(selectAddress(newAddress));
       handleCloseModal();
     };
 
@@ -53,6 +55,7 @@ export const Addresses = () => {
 
     const onSubmit = (values) => {
       dispatch(editAddress({ changes: { ...values }, id: address.id }));
+      dispatch(selectAddress({ ...values, id: address.id }));
       handleCloseModal();
     };
 
