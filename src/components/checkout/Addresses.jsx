@@ -1,22 +1,26 @@
-import React, { useState } from "react";
-import { ContentCard } from "./cards/ContentCard";
+import React, { useState, Fragment } from "react";
+import { v4 as uuid } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
+import { getSelectedAddress, selectAddress } from "../../store/checkoutSlice";
 import {
+  allAddresses,
   addAddress,
   editAddress,
   removeAddress,
-  getCheckoutAddressesState,
-  selectAddress,
-} from "../../store/checkoutSlice";
+} from "../../store/entities/addressesSlice";
+import { ContentCard } from "./cards/ContentCard";
 import { CheckoutCard } from "./cards/CheckoutCard";
 import { AddressForm } from "./forms/AddressForm";
 import { Modal } from "../common/Modal";
 
 export const Addresses = () => {
+  const addresses = useSelector(allAddresses);
+  const selectedAddress = useSelector(getSelectedAddress);
   const dispatch = useDispatch();
-  const { addresses, selectedAddress } = useSelector(getCheckoutAddressesState);
-  const [modalContent, setModalContent] = useState(<></>);
+
+  const [modalContent, setModalContent] = useState(<Fragment />);
   const [openModal, setOpenModal] = useState(false);
+
   const handleCloseModal = () => setOpenModal(false);
 
   const handleOnAddAddressClick = () => {
@@ -26,7 +30,7 @@ export const Addresses = () => {
     };
 
     const onSubmit = (values) => {
-      dispatch(addAddress(values));
+      dispatch(addAddress({ ...values, id: uuid() }));
       handleCloseModal();
     };
 
@@ -48,7 +52,7 @@ export const Addresses = () => {
     };
 
     const onSubmit = (values) => {
-      dispatch(editAddress({ ...values, id: address.id }));
+      dispatch(editAddress({ changes: { ...values }, id: address.id }));
       handleCloseModal();
     };
 

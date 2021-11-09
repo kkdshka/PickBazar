@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectSchedule, getCheckoutSchedule } from "../../store/checkoutSlice";
+import { selectSchedule, getSelectedSchedule } from "../../store/checkoutSlice";
 import { ContentCard } from "./cards/ContentCard";
 import { CheckoutCard } from "./cards/CheckoutCard";
 
@@ -12,7 +12,7 @@ const schedules = [
 ];
 
 export const Schedule = () => {
-  const selectedSchedule = useSelector(getCheckoutSchedule);
+  const selectedSchedule = useSelector(getSelectedSchedule);
   const dispatch = useDispatch();
 
   const isActiveSchedule = (id) =>
