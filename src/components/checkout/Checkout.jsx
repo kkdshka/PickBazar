@@ -2,6 +2,7 @@ import React from "react";
 import { Addresses } from "./Addresses";
 import { Schedule } from "./Schedule";
 import { ContactNumbers } from "./ContactNumbers";
+import { PaymentOptions } from "./PaymentOptions";
 
 export const Checkout = () => {
   return (
@@ -10,6 +11,7 @@ export const Checkout = () => {
         <Addresses />
         <Schedule />
         <ContactNumbers />
+        <PaymentOptions />
       </div>
     </div>
   );

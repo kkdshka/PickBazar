@@ -39,7 +39,7 @@ const reducers = combineReducers({
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["cart", "checkout", "addresses", "contactNumbers"],
+  whitelist: ["cart", "checkout", "addresses", "contactNumbers", "auth"],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

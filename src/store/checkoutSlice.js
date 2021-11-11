@@ -1,4 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { axiosInstance } from "../api/axiosClient";
+import { toast } from "react-toastify";
+import { getCartState } from "./cartSlice";
+
+export const checkoutOrder = createAsyncThunk(
+  "checkout/checkoutOrder",
+  async (_, { getState }) => {
+    const { checkout, auth } = getState();
+    const order = {
+      address: checkout.selectedAddress.address,
+      when: checkout.selectedSchedule.value,
+      products: getCartState(getState()).products,
+      phone: checkout.selectedContactNumber.number,
+      email: auth.user.email,
+    };
+
+    const response = await axiosInstance.post("/orders", order);
+    toast.success("You successfully created an order");
+    return response.data;
+  }
+);
 
 const initialState = {
   selectedAddress: null,
