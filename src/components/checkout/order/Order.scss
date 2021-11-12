@@ -1,0 +1,62 @@
+@mixin list-item () {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #77798C;
+}
+
+.order {
+  &_container {
+    min-width: 270px;
+    display: flex;
+    flex-direction: column;
+    //align-items: center;
+  }
+
+  &_header {
+    font-weight: 700;
+    align-self: center;
+    margin-bottom: 40px;
+  }
+
+  &_product {
+    @include list-item;
+
+    margin-bottom: 20px;
+
+    &_count {
+      font-weight: 700;
+      color: #0D1136;
+    }
+
+    &_factor {
+      padding: 0 12px;
+    }
+  }
+
+  &_divider {
+    border-bottom: 1px solid #E6E6E6;
+    margin-bottom: 20px;
+  }
+
+  &_sub-total {
+    @include list-item;
+    margin-bottom: 10px;
+  }
+
+  &_total {
+    @include list-item;
+    margin-top: 10px;
+
+    &_name {
+      color: #0D1136;
+      font-weight: 700;
+
+      &_sub {
+        font-size: 11px;
+      }
+    }
+  }
+}
