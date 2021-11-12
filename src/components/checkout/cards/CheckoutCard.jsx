@@ -1,8 +1,11 @@
 import React, { Fragment } from "react";
 import { Button } from "../../common/Button";
 import "./CheckoutCard.scss";
-import { checkoutOrder } from "../../../store/checkoutSlice";
-import { useDispatch } from "react-redux";
+import {
+  checkoutOrder,
+  getCheckoutIsReady,
+} from "../../../store/checkoutSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export const CheckoutCard = ({
   id,
@@ -13,6 +16,8 @@ export const CheckoutCard = ({
   children,
 }) => {
   const dispatch = useDispatch();
+  const checkoutIsReady = useSelector(getCheckoutIsReady);
+
   return (
     <div className="checkout-card">
       <div className="checkout-card_header">
@@ -36,6 +41,7 @@ export const CheckoutCard = ({
           <Button
             className="checkout-card_confirm-button"
             onClick={() => dispatch(checkoutOrder())}
+            disabled={!checkoutIsReady}
           >
             Proceed to Checkout
           </Button>

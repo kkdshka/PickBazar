@@ -47,6 +47,15 @@ export const getSelectedAddress = (state) => state.checkout.selectedAddress;
 export const getSelectedSchedule = (state) => state.checkout.selectedSchedule;
 export const getSelectedContactNumber = (state) =>
   state.checkout.selectedContactNumber;
+export const getCheckoutIsReady = (state) => {
+  return (
+    Boolean(state.checkout.selectedAddress) &&
+    Boolean(state.checkout.selectedSchedule) &&
+    Boolean(state.checkout.selectedContactNumber) &&
+    Boolean(state.auth.user) &&
+    Boolean(state.cart.products)
+  );
+};
 
 export const { selectAddress, selectSchedule, selectContactNumber } =
   checkoutSlice.actions;
