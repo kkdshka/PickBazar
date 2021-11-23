@@ -1,73 +1,46 @@
-import React, { useState, Fragment } from "react";
-import { v4 as uuid } from "uuid";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSelectedAddress, selectAddress } from "../../store/checkoutSlice";
 import {
   allAddresses,
-  addAddress,
-  editAddress,
   removeAddress,
 } from "../../store/entities/addressesSlice";
 import { ContentCard } from "./cards/ContentCard";
 import { CheckoutCard } from "./cards/CheckoutCard";
-import { AddressForm } from "./forms/AddressForm";
+import { AddAddress } from "./modals/AddAddress";
+import { EditAddress } from "./modals/EditAddress";
 import { Modal } from "../common/Modal";
+
+const ModalType = { none: "NONE", add: "ADD", edit: "EDIT" };
 
 export const Addresses = () => {
   const addresses = useSelector(allAddresses);
   const selectedAddress = useSelector(getSelectedAddress);
   const dispatch = useDispatch();
 
-  const [modalContent, setModalContent] = useState(<Fragment />);
-  const [openModal, setOpenModal] = useState(false);
+  const [currentModal, setCurrentModal] = useState({
+    type: ModalType.none,
+    value: "",
+  });
 
-  const handleCloseModal = () => setOpenModal(false);
+  const handleCloseModal = () =>
+    setCurrentModal({
+      type: ModalType.none,
+      value: "",
+    });
 
   const handleOnAddAddressClick = () => {
-    const initialValues = {
-      title: "",
-      address: "",
-    };
-
-    const onSubmit = (values) => {
-      const newAddress = { ...values, id: uuid() };
-      dispatch(addAddress(newAddress));
-      dispatch(selectAddress(newAddress));
-      handleCloseModal();
-    };
-
-    setModalContent(
-      <AddressForm
-        close={handleCloseModal}
-        initialValues={initialValues}
-        onSubmit={onSubmit}
-        title="Add New Address"
-      />
-    );
-    setOpenModal(true);
+    setCurrentModal({
+      ...currentModal,
+      type: ModalType.add,
+    });
   };
 
   const handleOnEditAddressClick = (address) => () => {
-    const initialValues = {
-      title: address.title,
-      address: address.address,
-    };
-
-    const onSubmit = (values) => {
-      dispatch(editAddress({ changes: { ...values }, id: address.id }));
-      dispatch(selectAddress({ ...values, id: address.id }));
-      handleCloseModal();
-    };
-
-    setModalContent(
-      <AddressForm
-        close={handleCloseModal}
-        initialValues={initialValues}
-        onSubmit={onSubmit}
-        title="Edit Address"
-      />
-    );
-    setOpenModal(true);
+    setCurrentModal({
+      type: ModalType.edit,
+      value: address,
+    });
   };
 
   const handleOnDeleteAddressClick = (id) => () => dispatch(removeAddress(id));
@@ -85,7 +58,19 @@ export const Addresses = () => {
       addTitle="Add Address"
       onAddClick={handleOnAddAddressClick}
     >
-      {openModal && <Modal>{modalContent}</Modal>}
+      {currentModal.type === ModalType.add && (
+        <Modal>
+          <AddAddress onClose={handleCloseModal} />
+        </Modal>
+      )}
+      {currentModal.type === ModalType.edit && (
+        <Modal>
+          <EditAddress
+            address={currentModal.value}
+            onClose={handleCloseModal}
+          />
+        </Modal>
+      )}
       {addresses &&
         addresses.map((address) => (
           <ContentCard
