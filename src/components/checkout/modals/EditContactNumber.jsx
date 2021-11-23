@@ -22,7 +22,7 @@ export const EditContactNumber = ({ contactNumber, onClose }) => {
       close={onClose}
       initialValues={initialValues}
       onSubmit={onSubmit}
-      title="Add New Number"
+      title="Edit Number"
     />
   );
 };

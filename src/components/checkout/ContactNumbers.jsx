@@ -14,23 +14,31 @@ import { AddContactNumber } from "./modals/AddContactNumber";
 import { EditContactNumber } from "./modals/EditContactNumber";
 import { Modal } from "../common/Modal";
 
+const ModalType = { none: "NONE", add: "ADD", edit: "EDIT" };
+
 export const ContactNumbers = () => {
   const contactNumbers = useSelector(allContactNumbers);
   const selectedContactNumber = useSelector(getSelectedContactNumber);
   const dispatch = useDispatch();
 
-  const [addModal, setAddModal] = useState({ open: false });
-  const [editModal, setEditModal] = useState({ open: false, value: "" });
+  const [currentModal, setCurrentModal] = useState({
+    type: ModalType.none,
+    value: "",
+  });
 
-  const handleCloseAddModal = () => setAddModal({ open: false });
-  const handleCloseEditModal = () => setEditModal({ open: false, value: "" });
+  const handleCloseModal = () => {
+    setCurrentModal({
+      type: ModalType.none,
+      value: "",
+    });
+  };
 
   const handleOnAddNumberClick = () => {
-    setAddModal({ open: true });
+    setCurrentModal({ ...currentModal, type: ModalType.add });
   };
 
   const handleOnEditNumberClick = (contactNumber) => () => {
-    setEditModal({ open: true, value: contactNumber });
+    setCurrentModal({ type: ModalType.edit, value: contactNumber });
   };
 
   const handleOnDeleteNumberClick = (id) => () => dispatch(removeNumber(id));
@@ -48,16 +56,16 @@ export const ContactNumbers = () => {
       addTitle="Add Number"
       onAddClick={handleOnAddNumberClick}
     >
-      {addModal.open && (
+      {currentModal.type === ModalType.add && (
         <Modal>
-          <AddContactNumber onClose={handleCloseAddModal} />
+          <AddContactNumber onClose={handleCloseModal} />
         </Modal>
       )}
-      {editModal.open && (
+      {currentModal.type === ModalType.edit && (
         <Modal>
           <EditContactNumber
-            contactNumber={editModal.value}
-            onClose={handleCloseEditModal}
+            contactNumber={currentModal.value}
+            onClose={handleCloseModal}
           />
         </Modal>
       )}
