@@ -1,5 +1,4 @@
-import React, { useState, Fragment } from "react";
-import { v4 as uuid } from "uuid";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getSelectedContactNumber,
@@ -7,13 +6,12 @@ import {
 } from "../../store/checkoutSlice";
 import {
   allContactNumbers,
-  addNumber,
-  editNumber,
   removeNumber,
 } from "../../store/entities/contactNumbersSlice";
 import { ContentCard } from "./cards/ContentCard";
 import { CheckoutCard } from "./cards/CheckoutCard";
-import { ContactNumberForm } from "./forms/ContactNumberForm";
+import { AddContactNumber } from "./modals/AddContactNumber";
+import { EditContactNumber } from "./modals/EditContactNumber";
 import { Modal } from "../common/Modal";
 
 export const ContactNumbers = () => {
@@ -21,55 +19,18 @@ export const ContactNumbers = () => {
   const selectedContactNumber = useSelector(getSelectedContactNumber);
   const dispatch = useDispatch();
 
-  const [modalContent, setModalContent] = useState(<Fragment />);
-  const [openModal, setOpenModal] = useState(false);
+  const [addModal, setAddModal] = useState({ open: false });
+  const [editModal, setEditModal] = useState({ open: false, value: "" });
 
-  const handleCloseModal = () => setOpenModal(false);
+  const handleCloseAddModal = () => setAddModal({ open: false });
+  const handleCloseEditModal = () => setEditModal({ open: false, value: "" });
 
   const handleOnAddNumberClick = () => {
-    const initialValues = {
-      number: "",
-    };
-
-    const onSubmit = (values) => {
-      const newNumber = { ...values, id: uuid() };
-
-      dispatch(addNumber(newNumber));
-      dispatch(selectContactNumber(newNumber));
-      handleCloseModal();
-    };
-
-    setModalContent(
-      <ContactNumberForm
-        close={handleCloseModal}
-        initialValues={initialValues}
-        onSubmit={onSubmit}
-        title="Add New Number"
-      />
-    );
-    setOpenModal(true);
+    setAddModal({ open: true });
   };
 
   const handleOnEditNumberClick = (contactNumber) => () => {
-    const initialValues = {
-      number: contactNumber.number,
-    };
-
-    const onSubmit = (values) => {
-      dispatch(editNumber({ changes: { ...values }, id: contactNumber.id }));
-      dispatch(selectContactNumber({ ...values, id: contactNumber.id }));
-      handleCloseModal();
-    };
-
-    setModalContent(
-      <ContactNumberForm
-        close={handleCloseModal}
-        initialValues={initialValues}
-        onSubmit={onSubmit}
-        title="Edit Number"
-      />
-    );
-    setOpenModal(true);
+    setEditModal({ open: true, value: contactNumber });
   };
 
   const handleOnDeleteNumberClick = (id) => () => dispatch(removeNumber(id));
@@ -87,7 +48,19 @@ export const ContactNumbers = () => {
       addTitle="Add Number"
       onAddClick={handleOnAddNumberClick}
     >
-      {openModal && <Modal>{modalContent}</Modal>}
+      {addModal.open && (
+        <Modal>
+          <AddContactNumber onClose={handleCloseAddModal} />
+        </Modal>
+      )}
+      {editModal.open && (
+        <Modal>
+          <EditContactNumber
+            contactNumber={editModal.value}
+            onClose={handleCloseEditModal}
+          />
+        </Modal>
+      )}
       {contactNumbers &&
         contactNumbers.map((number) => (
           <ContentCard
