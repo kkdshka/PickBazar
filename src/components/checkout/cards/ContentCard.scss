@@ -1,0 +1,54 @@
+.content-card {
+  padding: 11px 15px;
+  background-color: #F7F7F7;
+  border-radius: 6px;
+
+  &_active {
+    background-color: white;
+    border: 1px solid #009E7F;
+  }
+
+  &_header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &_title {
+    color: #0D1136;
+    margin-bottom: 11px;
+    cursor: pointer;
+  }
+
+  &_editable-title {
+    font-weight: 700;
+    color: #0D1136;
+    margin-bottom: 11px;
+    cursor: pointer;
+  }
+
+  &_text {
+    font-weight: 700;
+    color: #424561;
+    line-height: 24px;
+  }
+
+  &_editable-text {
+    color: #424561;
+    line-height: 24px;
+  }
+
+  &_edit-icon {
+    margin-right: 0;
+    margin-left: auto;
+    cursor: pointer;
+  }
+
+  &_delete-icon {
+    margin-right: 0;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+}
+
+

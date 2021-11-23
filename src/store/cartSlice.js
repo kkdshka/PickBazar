@@ -48,15 +48,18 @@ export const getCartState = (state) => {
     (previousValue, currentValue) => previousValue + currentValue.count,
     0
   );
-  const price = products
-    .reduce(
-      (previousValue, currentValue) =>
-        previousValue + currentValue.data.price * currentValue.count,
-      0
-    )
-    .toFixed(2);
 
-  return { products, count, price };
+  const rawPrice = products.reduce(
+    (previousValue, currentValue) =>
+      previousValue + currentValue.data.price * currentValue.count,
+    0
+  );
+
+  const price = rawPrice.toFixed(2);
+
+  const totalPrice = (rawPrice + 3).toFixed(2);
+
+  return { products, count, price, totalPrice };
 };
 
 export const {

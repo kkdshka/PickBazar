@@ -7,7 +7,7 @@ import { SignIn } from "../signIn/SignIn";
 import { AuthButton } from "../authButton/AuthButton";
 import "./Header.scss";
 
-export const Header = () => {
+export const Header = ({ withSearch = true }) => {
   const isSignUpOpen = useSelector((state) => state.signUp.isOpen);
   const isSignInOpen = useSelector((state) => state.signIn.isOpen);
 
@@ -17,7 +17,7 @@ export const Header = () => {
         <Link to="/">
           <img src={"/logo.png"} alt="logo" className="logo" />
         </Link>
-        <Search />
+        {withSearch && <Search />}
       </div>
       <div>
         <AuthButton />

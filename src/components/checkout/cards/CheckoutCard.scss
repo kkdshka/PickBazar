@@ -1,0 +1,61 @@
+.checkout-card {
+  background-color: white;
+  padding: 30px;
+  width: 805px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+
+  &_header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 35px;
+  }
+
+  &_title {
+    font-weight: 700;
+    font-size: 19px;
+    color: #0D1136;
+
+
+    &_id {
+      margin-right: 15px;
+      background-color: #009E7F;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 180px;
+    }
+  }
+
+  &_add-button {
+    font-weight: 700;
+    color: #009E7F;
+    margin-right: 0;
+    margin-left: auto;
+    cursor: pointer;
+  }
+
+  &_content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+  }
+
+  &_agreement {
+    font-size: 13px;
+    color: #77798C;
+    margin: 30px 0 30px 0;
+
+    &_link {
+      color: #FF5B60;
+      cursor: pointer;
+    }
+  }
+
+  &_confirm-button {
+    background-color: #009E7F;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
